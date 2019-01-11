@@ -1,0 +1,27 @@
+
+    <table>
+      <tr>
+        <th colspan="2">
+          Pocetak vazenja: {{datumObjavljivanja | date:'dd/MM/yyyy'}}
+        </th>
+        <th colspan="3">
+          Vazi do: {{datumIsteka | date:'dd/MM/yyyy'}}
+        </th>
+      </tr>
+      <tr>
+        <th>Linije</th>
+        <th>Zona</th>
+        <th>Vrsta prevoza</th>
+        <th>Tip karte</th>
+        <th>Cena</th>
+      </tr>
+      <tr *ngFor="let stavka of sort('nazivLinije') ">
+        <td>{{stavka.nazivLinije}}</td>
+        <td>{{stavka.nazivZone}}</td>
+        <td>{{stavka.vrstaPrevoza}}</td>
+        <td>{{stavka.tipKarte}}</td>
+        <td>{{stavka.cena}}</td>
+      </tr>
+    </table>
+
+  
