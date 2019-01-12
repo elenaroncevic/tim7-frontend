@@ -1,11 +1,11 @@
 
-    <table>
+    <table *ngIf ="!loading">
       <tr>
         <th colspan="2">
-          Pocetak vazenja: {{datumObjavljivanja | date:'dd/MM/yyyy'}}
+          Pocetak vazenja: {{cenovnik.datumObjavljivanja | date:'dd/MM/yyyy'}}
         </th>
         <th colspan="3">
-          Vazi do: {{datumIsteka | date:'dd/MM/yyyy'}}
+          Vazi do: {{cenovnik.datumIsteka | date:'dd/MM/yyyy'}}
         </th>
       </tr>
       <tr>
