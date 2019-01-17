@@ -1,0 +1,56 @@
+<div class="register-section">
+	<div class="col-md-4"></div>
+	<div class="col-md-3 container">
+		<br>
+		<h3><label>Popunite podatke za registraciju: </label></h3>
+		<br>
+		<br>
+
+		<form novalidate [formGroup]="registracijaForm" (ngSubmit)="onSubmit()">
+			<div class="form-group" [ngClass]="{'has-danger': korIme.invalid && (korIme.dirty || korIme.touched), 'has-success': korIme.valid && (korIme.dirty || korIme.touched)}">
+				<input class="form-control" formControlName="korIme" placeholder="Korisnicko ime*" name="korIme" required>
+				<div class="form-control-feedback" *ngIf="korIme.errors && (korIme.dirty || korIme.touched)">
+					<p *ngIf="korIme.errors.required">Korisnicko ime je obavezno.</p>
+				</div>
+			</div>
+			<div class="form-group" [ngClass]="{'has-danger': lozinka1.invalid && (lozinka1.dirty || lozinka1.touched), 'has-success': lozinka1.valid && (lozinka1.dirty || lozinka1n.touched)}">
+				<input class="form-control" formControlName="lozinka1" type="password" name="lozinka1" placeholder="Lozinka*" name="lozinka1"
+				 required>
+				<div class="form-control-feedback" *ngIf="lozinka1.errors && (lozinka1.dirty || lozinka1.touched)">
+					<p *ngIf="lozinka1.errors.required">Lozinka je obavezna.</p>
+					<p *ngIf="lozinka1.errors.minlength">Lozinka mora imati minimalno 8 karaktera.</p>
+				</div>
+			</div>
+			<div class="form-group" [ngClass]="{'has-danger': lozinka2.invalid && (lozinka2.dirty || lozinka2.touched), 'has-success': lozinka2.valid && (lozinka2.dirty || lozinka2.touched)}">
+
+				<input class="form-control" formControlName="lozinka2" type="password" name="lozinka2" placeholder="Ponovi lozinku*"
+				 name="lozinka2" required>
+				<div class="form-control-feedback" *ngIf="lozinka2.errors && (lozinka2.dirty || lozinka2.touched)">
+					<p *ngIf="lozinka2.errors.required">Potvrdite unesenu lozinku.</p>
+				</div>
+			</div>
+			<div class="form-group" [ngClass]="{'has-danger': ime.invalid && (ime.dirty || ime.touched), 'has-success': ime.valid && (ime.dirty || ime.touched)}">
+				<input class="form-control" formControlName="ime" placeholder="Ime*" name="ime" required>
+				<div class="form-control-feedback" *ngIf="ime.errors && (ime.dirty || ime.touched)">
+					<p *ngIf="ime.errors.required">Ime je obavezno.</p>
+				</div>
+			</div>
+			<div class="form-group" [ngClass]="{'has-danger': prezime.invalid && (prezime.dirty || prezime.touched), 'has-success': prezime.valid && (prezime.dirty || prezime.touched)}">
+				<input class="form-control" formControlName="prezime" placeholder="Prezime*" name="prezime" required>
+				<div class="form-control-feedback" *ngIf="prezime.errors && (prezime.dirty || prezime.touched)">
+					<p *ngIf="prezime.errors.required">Prezime je obavezno.</p>
+				</div>
+			</div>
+			<div class="form-group" [ngClass]="{'has-danger': email.invalid && (email.dirty || email.touched),'has-success': email.valid && (email.dirty || email.touched)}">
+				<input class="form-control" formControlName="email" placeholder="Email*" name="email" required>
+				<div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+					<p *ngIf="email.errors.required">Email je obavezan.</p>
+					<p *ngIf="email.errors.pattern">Uneli ste nepostojecu email adresu.</p>
+				</div>
+			</div>
+
+			<button type="submit" class="btn">Registruj</button><br /><br />
+
+		</form>
+	</div>
+</div>
