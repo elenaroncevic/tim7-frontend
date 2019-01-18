@@ -1,5 +1,5 @@
-<div  *ngIf="!loading">
-  <button (click)="editCenovnik()">EDIT</button>
+<div *ngIf="!loading">
+  <button class="btn btn-lg btn-outline-primary" (click)="openAddModal()">Dodaj</button>
   <table>
     <tr>
       <th colspan="2">
@@ -25,4 +25,32 @@
     </tr>
   </table>
 </div>
-  
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Dodaj Cenovnik</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="datumObjavljivanja">Pocetak vazenja</label>
+        <div class="input-group">
+          <input id="datumObjavljivanja" [(ngModel)]="this.newCenovnik.datumObjavljivanja" class="form-control" placeholder="yyyy-mm-dd" name="do" ngbDatepicker #do="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="do.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    {{this.newCenovnik.datumObjavljivanja}}
+    <button type="button" class="btn-outline-dark" (click)="addCenovnik()"></button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+
