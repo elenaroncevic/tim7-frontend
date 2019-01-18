@@ -9,7 +9,11 @@ import { AppComponent } from './app.component';
 import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { RegistracijaComponent } from './registracija/registracija.component';
 import { PrijavaComponent } from './prijava/prijava.component';
-import { ProfilComponent } from './profil/profil.component';
+
+import { ProfilKorisnikComponent } from './profil-korisnik/profil-korisnik.component';
+import { ProfilAdminComponent } from './profil-admin/profil-admin.component';
+import { ProfilVerifikatorComponent } from './profil-verifikator/profil-verifikator.component';
+import { ProfilKondukterComponent } from './profil-kondukter/profil-kondukter.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,10 @@ import { ProfilComponent } from './profil/profil.component';
     CenovnikComponent,
     RegistracijaComponent,
     PrijavaComponent,
-    ProfilComponent
+    ProfilKorisnikComponent,
+    ProfilAdminComponent,
+    ProfilVerifikatorComponent,
+    ProfilKondukterComponent
   ],
   imports: [
     BrowserModule,
