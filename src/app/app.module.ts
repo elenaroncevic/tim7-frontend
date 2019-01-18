@@ -8,12 +8,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { RegistracijaComponent } from './registracija/registracija.component';
+import { PrijavaComponent } from './prijava/prijava.component';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CenovnikComponent,
-    RegistracijaComponent
+    RegistracijaComponent,
+    PrijavaComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

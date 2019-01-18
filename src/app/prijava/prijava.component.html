@@ -1,0 +1,32 @@
+<div class="register-section">
+<div class="prijava-section">
+	<div class="col-md-4"></div>
+	<div class="col-md-3 container">
+		<br>
+		<h4><label>Popunite podatke za prijavu: </label></h4>
+		<br>
+		<br>
+
+		<form novalidate [formGroup]="prijavaForm" (ngSubmit)="onSubmit()">
+			<div class="form-group" [ngClass]="{'has-danger': korIme.invalid && (korIme.dirty || korIme.touched), 'has-success': korIme.valid && (korIme.dirty || korIme.touched)}">
+				<input class="form-control" formControlName="korIme" placeholder="Korisnicko ime*" name="korIme" required>
+				<div class="form-control-feedback" *ngIf="korIme.errors && (korIme.dirty || korIme.touched)">
+					<p *ngIf="korIme.errors.required">Korisnicko ime je obavezno.</p>
+				</div>
+			</div>
+			<div class="form-group" [ngClass]="{'has-danger': lozinka1.invalid && (lozinka1.dirty || lozinka1.touched), 'has-success': lozinka1.valid && (lozinka1.dirty || lozinka1n.touched)}">
+				<input class="form-control" formControlName="lozinka1" type="password" name="lozinka1" placeholder="Lozinka*" name="lozinka1"
+				 required>
+				<div class="form-control-feedback" *ngIf="lozinka1.errors && (lozinka1.dirty || lozinka1.touched)">
+					<p *ngIf="lozinka1.errors.required">Lozinka je obavezna.</p>
+					<p *ngIf="lozinka1.errors.minlength">Lozinka mora imati minimalno 8 karaktera.</p>
+				</div>
+			</div>
+			
+
+			<button type="submit" class="btn">Prijavi se</button><br /><br />
+
+		</form>
+	</div>
+</div>
+</div>
