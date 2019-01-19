@@ -16,7 +16,7 @@ export class PrijavaComponent implements OnInit {
   korIme: FormControl;
   lozinka1: FormControl;
   
-  constructor(private prijavaService: PrijavaService, private tipKorisnikaService : TipKorisnikaService) {
+  constructor(private prijavaService: PrijavaService) {
     this.createFormControls();
     this.createForm();
    }
@@ -46,7 +46,6 @@ export class PrijavaComponent implements OnInit {
       this.kor.username = this.prijavaForm.controls.korIme.value;
       this.kor.password = this.prijavaForm.controls.lozinka1.value;
       this.prijavaService.post(this.kor);
-      this.tipKorisnikaService.getTipKorisnika();
       
       this.prijavaForm.reset();
     }

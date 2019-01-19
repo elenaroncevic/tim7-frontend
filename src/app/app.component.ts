@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from "@angular/router"
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tim7-frontend';
+  
+  constructor(private router: Router) { }
+
+  get user(): any{
+  return localStorage.getItem('X-Auth-Token');
+  }
+
+  odjava(){
+    localStorage.removeItem('X-Auth-Token');
+    this.router.navigate(['/'])
+  }
 }
