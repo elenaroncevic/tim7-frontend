@@ -16,8 +16,8 @@ export class CenovnikService {
      
   }
 
-  addCenovnik(cenovnik : Cenovnik, token : string){
-    console.log(token);
+  addCenovnik(cenovnik : Cenovnik){
+    var token = localStorage.getItem('X-Auth-Token');
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

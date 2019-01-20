@@ -30,3 +30,11 @@ table {
     color:#92083b;
     cursor: pointer;
   }
+
+.fade{
+  opacity :1 !important ;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.5 !important;
+}

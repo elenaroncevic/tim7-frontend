@@ -12,6 +12,7 @@ import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { RegistracijaComponent } from './registracija/registracija.component';
 import { PrijavaComponent } from './prijava/prijava.component';
 import { ProfilComponent } from './profil/profil.component';
+import { FormCenovnikComponent } from './form-cenovnik/form-cenovnik.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProfilComponent } from './profil/profil.component';
     CenovnikComponent,
     RegistracijaComponent,
     PrijavaComponent,
-    ProfilComponent
+    ProfilComponent,
+    FormCenovnikComponent,
   ],
   imports: [
     BrowserModule,

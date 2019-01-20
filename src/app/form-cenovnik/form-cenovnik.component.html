@@ -1,0 +1,19 @@
+<form novalidate [formGroup]="prijavaForm" (ngSubmit)="onSubmit()">
+  <div class="form-group" >
+    <input type="datetime-local"
+           class="form-control"
+           formControlName="datumControl"
+           placeholder="Datum pocetka vazenja"
+           [(ngModel)]="cenovnik.datumObjavljivanja";
+           required>
+    <div class="form-control-feedback" *ngIf="datumControl.errors">
+      <p *ngIf="datumControl.errors.required">Datum pocetka je obavezan</p>
+      <p *ngIf="datumControl.errors.validDate">Datum mora biti najranije od ponoci dva dana od sad</p>
+    </div>
+  </div>
+  
+
+
+  {{this.cenovnik.datumObjavljivanja}}
+
+</form>
