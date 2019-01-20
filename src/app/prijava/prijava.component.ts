@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PrijavaService } from '../prijava.service';
 import { Login } from '../model/Login';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { TipKorisnikaService } from '../tip-korisnika.service';
 @Component({
   selector: 'app-prijava',
   templateUrl: './prijava.component.html',
@@ -45,6 +46,7 @@ export class PrijavaComponent implements OnInit {
       this.kor.username = this.prijavaForm.controls.korIme.value;
       this.kor.password = this.prijavaForm.controls.lozinka1.value;
       this.prijavaService.post(this.kor);
+      
       this.prijavaForm.reset();
     }
   }
