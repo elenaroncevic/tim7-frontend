@@ -10,3 +10,9 @@ button{
     background: white;
     height: 100%;
   }
+  .modal-footer .btn{
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+  }

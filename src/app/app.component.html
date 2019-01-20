@@ -9,21 +9,22 @@
   <div *ngIf="user!=undefined" class="item1">
     <button (click)='odjava()' class="nav-item nav-link-edit">Odjava</button>
     <div *ngIf=" user.uloga=='KORISNIK'">
-      <button class="nav-item nav-link-edit" [routerLink]="['/']">Kupovina karte</button>
+        <button class="nav-item nav-link-edit" [routerLink]="['/profilKorisnik']">Profil</button>
+      <button class="nav-item nav-link-edit" [routerLink]="['/kupovinaKarte']">Kupovina karte</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/']">Pregled kupljenih karata</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/']">Izmena licnik podataka</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/']">Promena lozinke</button>
     </div>
     <!-- Ovde stavljajte vase opcije u meni -->
     <div *ngIf=" user.uloga=='ADMINISTRATOR'">
-      <br />
+        <button class="nav-item nav-link-edit" [routerLink]="['/profilAdmin']">Profil</button>
     </div>
     <div *ngIf=" user.uloga=='KONDUKTER'">
-      <br />
+        <button class="nav-item nav-link-edit" [routerLink]="['/profilKondukter']">Profil</button>
     </div>
     <div *ngIf="user.uloga=='VERIFIKATOR'">
 
-      <br />
+        <button class="nav-item nav-link-edit" [routerLink]="['/profilVerifikator']">Profil</button>
     </div>
 
   </div>

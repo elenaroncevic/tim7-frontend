@@ -5,4 +5,5 @@ export class PrijavljenKorisnik {
     ime : string;
     prezime : string;
     email : string;
+    status : string;
 }
