@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router"
+import { PrijavljenKorisnik } from './model/PrijavljenKorisnik';
 
 
 @Component({
@@ -13,11 +14,14 @@ export class AppComponent {
   constructor(private router: Router) { }
 
   get user(): any{
-  return localStorage.getItem('X-Auth-Token');
+     return JSON.parse(localStorage.getItem('ulogovan')) as PrijavljenKorisnik;
   }
 
   odjava(){
     localStorage.removeItem('X-Auth-Token');
+    localStorage.removeItem('ulogovan');
     this.router.navigate(['/'])
+
+
   }
 }
