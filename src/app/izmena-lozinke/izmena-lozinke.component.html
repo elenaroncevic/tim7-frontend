@@ -1,0 +1,39 @@
+<div class="register-section">
+  <div class="col-md-4"></div>
+  <div class="col-md-3 container">
+    <br>
+    <h4><label>Izmena lozinke: </label></h4>
+    <br>
+    <br>
+
+    <form novalidate [formGroup]="lozinkaForm" (ngSubmit)="izmenaLozinke()">
+
+      <div class="form-group" [ngClass]="{'has-danger': trenutna.invalid && (trenutna.dirty || trenutna.touched), 'has-success': trenutna.valid && (trenutna.dirty || trenutna.touched)}">
+        <input class="form-control" type="password" formControlName="trenutna" name="trenutna" placeholder="Trenutna lozinka" required>
+        <div class="form-control-feedback" *ngIf="trenutna.errors && (trenutna.dirty || trenutna.touched)">
+          <p *ngIf="trenutna.errors.required">Unesite trenutnu lozinku.</p>
+          <p *ngIf="trenutna.errors.pattern">Niste ispravno uneli trenutnu lozinku.</p>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-danger': nova1.invalid && (nova1.dirty || nova1.touched), 'has-success': nova1.valid && (nova1.dirty || nova1.touched)}">
+        <input class="form-control" type="password" formControlName="nova1" name="nova1" placeholder="Nova lozinka" required>
+        <div class="form-control-feedback" *ngIf="nova1.errors && (nova1.dirty || nova1.touched)">
+          <p *ngIf="nova1.errors.required">Niste uneli novu lozinku.</p>
+          <p *ngIf="nova1.errors.minlength">Lozinka mora imati minimalno 8 karaktera.</p>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-danger': nova2.invalid && (nova2.dirty || nova2.touched),'has-success': nova2.valid && (nova2.dirty || nova2.touched)}">
+        <input class="form-control" type="password" formControlName="nova2" name="nova2" placeholder="Ponovljena nova lozinka" required>
+        <div class="form-control-feedback" *ngIf="nova2.errors && (nova2.dirty || nova2.touched)">
+          <p *ngIf="nova2.errors.required">Morate ponoviti novu lozinku.</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Sacuvaj</button>
+        <button class="btn btn-primary" type="button" (click)="otkazi()">Otkazi</button>
+      </div>
+
+    </form>
+  </div>
+</div>

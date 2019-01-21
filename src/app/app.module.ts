@@ -19,6 +19,7 @@ import { ProfilKondukterComponent } from './profil-kondukter/profil-kondukter.co
 import { KupovinaKarteComponent } from './kupovina-karte/kupovina-karte.component';
 import { UredjivanjeProfilaComponent } from './uredjivanje-profila/uredjivanje-profila.component';
 import { FormCenovnikComponent } from './form-cenovnik/form-cenovnik.component';
+import { IzmenaLozinkeComponent } from './izmena-lozinke/izmena-lozinke.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { FormCenovnikComponent } from './form-cenovnik/form-cenovnik.component';
     ProfilKondukterComponent,
     KupovinaKarteComponent,
     UredjivanjeProfilaComponent,
+    IzmenaLozinkeComponent,
  
     
     FormCenovnikComponent

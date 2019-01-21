@@ -12,7 +12,7 @@ import { FormCenovnikComponent} from './form-cenovnik/form-cenovnik.component';
 
 import { KupovinaKarteComponent} from './kupovina-karte/kupovina-karte.component';
 import { UredjivanjeProfilaComponent} from './uredjivanje-profila/uredjivanje-profila.component';
-
+import { IzmenaLozinkeComponent} from './izmena-lozinke/izmena-lozinke.component';
 
 
 const routes: Routes = [
@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'profilKondukter', component: ProfilKondukterComponent },
   { path: 'kupovinaKarte', component: KupovinaKarteComponent },
   { path: 'uredjivanjeProfila', component: UredjivanjeProfilaComponent },
+  { path: 'izmenaLozinke', component: IzmenaLozinkeComponent },
 
   { path: 'formCenovnik', component: FormCenovnikComponent}
 ];
