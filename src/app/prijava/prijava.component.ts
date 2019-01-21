@@ -3,6 +3,7 @@ import { PrijavaService } from '../prijava.service';
 import { Login } from '../model/Login';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { TipKorisnikaService } from '../tip-korisnika.service';
+
 @Component({
   selector: 'app-prijava',
   templateUrl: './prijava.component.html',

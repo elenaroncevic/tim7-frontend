@@ -4,6 +4,8 @@ import {StavkaCenovnika} from '../model/stavkaCenovnika';
 import{CenovnikService} from '../cenovnik.service';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms'
 import * as moment from 'moment';
+import { Linija, Zona} from '../model/Linija'
+
 
 @Component({
   selector: 'app-form-cenovnik',
@@ -13,7 +15,9 @@ import * as moment from 'moment';
 export class FormCenovnikComponent implements OnInit {
   cenovnik : Cenovnik = new Cenovnik();
 
-  dodajCenovnikForm: FormGroup;
+  linije : Linija[];
+
+  cenovnikForm: FormGroup;
 
   datumControl: FormControl;
   cenaControl: FormControl;
@@ -28,16 +32,33 @@ export class FormCenovnikComponent implements OnInit {
   nazivZone: string;
   nazivLinije: string;
 
+  showStavka: boolean;
+  loading : boolean;
 
-  constructor() {
+  constructor(private cenovnikService : CenovnikService) {
     this.createFormControls();
     this.createForm();
+    
   }
 
   ngOnInit() {
+    this.loading = true;
+    this.showStavka = false;
+
+    this.getData();
   }
 
-  
+  getData(){
+    this.loading = true;
+    this.cenovnikService.getLinije()
+    .then((response)=>{
+      this.linije = response;
+      console.log(response);
+      this.loading = false;
+     }).catch((error)=>{
+        console.log(error);
+     });
+  }
   createFormControls() {
   
     this.datumControl = new FormControl('', [Validators.required, this.ValidateDate]);
@@ -50,23 +71,29 @@ export class FormCenovnikComponent implements OnInit {
 
   ValidateDate(control: AbstractControl) {
     var tomorow = moment().add(2, 'd').startOf('day');
-    var date = moment(control.value.toString);
-    console.log(tomorow, date);
+    var date = moment(control.value);
 
-    if (date.isAfter(tomorow) ) {
+    if (tomorow.isAfter(date) ) {
       return { validDate: true };
     }
     return null;
   }
 
   createForm() {
-    this.dodajCenovnikForm = new FormGroup({
-      datum: this.datumControl,
-      cena: this.cenaControl,
-      tipKarte: this.tipControl,
-      vrstaPrevoza: this.prevozControl,
-      zona: this.zonaControl,
-      linija: this.linijaControl     
+    this.cenovnikForm = new FormGroup({
+      datumControl: this.datumControl,
+      cenaControl: this.cenaControl,
+      tipControl: this.tipControl,
+      prevozControl: this.prevozControl,
+      zonaControl: this.zonaControl,
+      linijaControl: this.linijaControl     
     });
   }
+
+  enableShowStavka(){
+    this.showStavka = true;
+    this.linijaChosen = false;
+  }
+
+ 
 }
