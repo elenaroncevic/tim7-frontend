@@ -92,7 +92,6 @@ export class FormCenovnikComponent implements OnInit {
 
   enableShowStavka(){
     this.showStavka = true;
-    this.linijaChosen = false;
   }
 
  
