@@ -8,6 +8,8 @@ import { ProfilKorisnikComponent} from './profil-korisnik/profil-korisnik.compon
 import { ProfilAdminComponent} from './profil-admin/profil-admin.component';
 import { ProfilVerifikatorComponent} from './profil-verifikator/profil-verifikator.component';
 import { ProfilKondukterComponent} from './profil-kondukter/profil-kondukter.component';
+import { FormCenovnikComponent} from './form-cenovnik/form-cenovnik.component';
+
 import { KupovinaKarteComponent} from './kupovina-karte/kupovina-karte.component';
 import { UredjivanjeProfilaComponent} from './uredjivanje-profila/uredjivanje-profila.component';
 
@@ -24,6 +26,7 @@ const routes: Routes = [
   { path: 'kupovinaKarte', component: KupovinaKarteComponent },
   { path: 'uredjivanjeProfila', component: UredjivanjeProfilaComponent },
 
+  { path: 'formCenovnik', component: FormCenovnikComponent}
 ];
 
 @NgModule({

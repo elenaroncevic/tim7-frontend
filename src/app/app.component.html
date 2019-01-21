@@ -2,8 +2,12 @@
   <div *ngIf="user==undefined" class="item1">
     <button class="nav-item nav-link-edit" [routerLink]="['/registracija']">Registracija</button>
     <button class="nav-item nav-link-edit" [routerLink]="['/prijava']">Prijava</button>
-    <button class="nav-item nav-link-edit" [routerLink]="['/cenovnik']">Cenovnik</button>
+
     <br />
+  </div>
+  <!-- Ovo svi mogu da vide (i neprijavljeni/neregistrovani korisnik) -->
+  <div class="item1">
+    <button class="nav-item nav-link-edit" [routerLink]="['/cenovnik']">Cenovnik</button>
   </div>
 
   <div *ngIf="user!=undefined" class="item1">
@@ -11,13 +15,13 @@
     <div *ngIf=" user.uloga=='KORISNIK'">
       <button class="nav-item nav-link-edit" [routerLink]="['/profilKorisnik']">Profil</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/kupovinaKarte']">Kupovina karte</button>
-      <button class="nav-item nav-link-edit" [routerLink]="['/cenovnik']">Cenovnik</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/uredjivanjeProfila']">Izmena licnih podataka</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/']">Promena lozinke</button>
     </div>
     <!-- Ovde stavljajte vase opcije u meni -->
     <div *ngIf=" user.uloga=='ADMINISTRATOR'">
-        <button class="nav-item nav-link-edit" [routerLink]="['/profilAdmin']">Profil</button>
+      <button class="nav-item nav-link-edit" [routerLink]="['/profilAdmin']">Profil</button>
+      <button class="nav-item nav-link-edit" [routerLink]="['/formCenovnik']">Dodaj Cenovnik</button>
     </div>
     <div *ngIf=" user.uloga=='KONDUKTER'">
         <button class="nav-item nav-link-edit" [routerLink]="['/profilKondukter']">Profil</button>

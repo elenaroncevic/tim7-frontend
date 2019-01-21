@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +18,7 @@ import { ProfilVerifikatorComponent } from './profil-verifikator/profil-verifika
 import { ProfilKondukterComponent } from './profil-kondukter/profil-kondukter.component';
 import { KupovinaKarteComponent } from './kupovina-karte/kupovina-karte.component';
 import { UredjivanjeProfilaComponent } from './uredjivanje-profila/uredjivanje-profila.component';
+import { FormCenovnikComponent } from './form-cenovnik/form-cenovnik.component';
 
 
 @NgModule({
@@ -31,13 +34,16 @@ import { UredjivanjeProfilaComponent } from './uredjivanje-profila/uredjivanje-p
     KupovinaKarteComponent,
     UredjivanjeProfilaComponent,
  
+    
+    FormCenovnikComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
