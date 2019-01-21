@@ -9,6 +9,8 @@ import { ProfilAdminComponent} from './profil-admin/profil-admin.component';
 import { ProfilVerifikatorComponent} from './profil-verifikator/profil-verifikator.component';
 import { ProfilKondukterComponent} from './profil-kondukter/profil-kondukter.component';
 import { KupovinaKarteComponent} from './kupovina-karte/kupovina-karte.component';
+import { UredjivanjeProfilaComponent} from './uredjivanje-profila/uredjivanje-profila.component';
+
 
 
 const routes: Routes = [
@@ -19,7 +21,9 @@ const routes: Routes = [
   { path: 'profilAdmin', component: ProfilAdminComponent },
   { path: 'profilVerifikator', component: ProfilVerifikatorComponent },
   { path: 'profilKondukter', component: ProfilKondukterComponent },
-  { path: 'kupovinaKarte', component: KupovinaKarteComponent }
+  { path: 'kupovinaKarte', component: KupovinaKarteComponent },
+  { path: 'uredjivanjeProfila', component: UredjivanjeProfilaComponent },
+
 ];
 
 @NgModule({

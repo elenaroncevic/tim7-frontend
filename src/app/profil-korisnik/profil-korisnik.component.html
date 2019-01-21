@@ -1,8 +1,33 @@
 <div class="register-section">
         <div class="prijava-section">
-            <div class="col-md-4"></div>
-            <div class="col-md-3 container">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 container">
+                <br/><br/>
+              <h1>{{user.ime}}  {{user.prezime}}</h1>
+              <br/>
+
+              <h3>Korisnicko ime: {{user.ime}}  </h3>
+              <h3>Email adresa: {{user.email}}  </h3>
+              <h3  *ngIf=" user.status!=null">Status: {{user.status}}  </h3><a href="">promeni status </a>
+
+
+<p></p>
+
+<h3>Kupljene karte</h3>
+<br/>
               
-            </div>
-        </div>
-        </div>
+              <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Tip karte</th>
+                        <th scope="col">Vrsta prevoza</th>
+                        <th scope="col">Zona/Linija</th>
+                        <th scope="col">Datum isteka</th>
+                        <th scope="col">Cena</th>
+                        <th scope="col">Cekirana dnevna</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     
+                    </tbody>
+                  </table>

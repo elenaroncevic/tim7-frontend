@@ -15,6 +15,8 @@ import { ProfilAdminComponent } from './profil-admin/profil-admin.component';
 import { ProfilVerifikatorComponent } from './profil-verifikator/profil-verifikator.component';
 import { ProfilKondukterComponent } from './profil-kondukter/profil-kondukter.component';
 import { KupovinaKarteComponent } from './kupovina-karte/kupovina-karte.component';
+import { UredjivanjeProfilaComponent } from './uredjivanje-profila/uredjivanje-profila.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { KupovinaKarteComponent } from './kupovina-karte/kupovina-karte.componen
     ProfilAdminComponent,
     ProfilVerifikatorComponent,
     ProfilKondukterComponent,
-    KupovinaKarteComponent
+    KupovinaKarteComponent,
+    UredjivanjeProfilaComponent,
+ 
   ],
   imports: [
     BrowserModule,
