@@ -16,7 +16,10 @@ import { ProfilKorisnikComponent } from './profil-korisnik/profil-korisnik.compo
 import { ProfilAdminComponent } from './profil-admin/profil-admin.component';
 import { ProfilVerifikatorComponent } from './profil-verifikator/profil-verifikator.component';
 import { ProfilKondukterComponent } from './profil-kondukter/profil-kondukter.component';
+import { KupovinaKarteComponent } from './kupovina-karte/kupovina-karte.component';
+import { UredjivanjeProfilaComponent } from './uredjivanje-profila/uredjivanje-profila.component';
 import { FormCenovnikComponent } from './form-cenovnik/form-cenovnik.component';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +31,10 @@ import { FormCenovnikComponent } from './form-cenovnik/form-cenovnik.component';
     ProfilAdminComponent,
     ProfilVerifikatorComponent,
     ProfilKondukterComponent,
+    KupovinaKarteComponent,
+    UredjivanjeProfilaComponent,
+ 
+    
     FormCenovnikComponent
   ],
   imports: [

@@ -1,0 +1,18 @@
+button{
+    background :#000080 ;
+    color:white; 
+    width:100%;
+  }
+  label{
+    color:#000080 ;
+  }
+  .register-section{
+    background: white;
+    height: 100%;
+  }
+  .modal-footer .btn{
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+  }

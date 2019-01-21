@@ -10,6 +10,11 @@ import { ProfilVerifikatorComponent} from './profil-verifikator/profil-verifikat
 import { ProfilKondukterComponent} from './profil-kondukter/profil-kondukter.component';
 import { FormCenovnikComponent} from './form-cenovnik/form-cenovnik.component';
 
+import { KupovinaKarteComponent} from './kupovina-karte/kupovina-karte.component';
+import { UredjivanjeProfilaComponent} from './uredjivanje-profila/uredjivanje-profila.component';
+
+
+
 const routes: Routes = [
   { path: 'cenovnik', component: CenovnikComponent },
   { path: 'registracija', component: RegistracijaComponent },
@@ -18,6 +23,9 @@ const routes: Routes = [
   { path: 'profilAdmin', component: ProfilAdminComponent },
   { path: 'profilVerifikator', component: ProfilVerifikatorComponent },
   { path: 'profilKondukter', component: ProfilKondukterComponent },
+  { path: 'kupovinaKarte', component: KupovinaKarteComponent },
+  { path: 'uredjivanjeProfila', component: UredjivanjeProfilaComponent },
+
   { path: 'formCenovnik', component: FormCenovnikComponent}
 ];
 

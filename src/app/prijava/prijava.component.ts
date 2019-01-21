@@ -28,7 +28,7 @@ export class PrijavaComponent implements OnInit {
   
   createFormControls() {
     this.korIme = new FormControl('', Validators.required);
-    this.lozinka1 = new FormControl('', [Validators.required, Validators.minLength(8)]);
+    this.lozinka1 = new FormControl('', [Validators.required]);
    
   }
 
@@ -40,15 +40,17 @@ export class PrijavaComponent implements OnInit {
     });
   }
   private onSubmit() {
-    console.log(this.prijavaForm)
+   
     if (this.prijavaForm.valid) {
-      console.log("Form Submitted!");
       this.kor = new Login();
       this.kor.username = this.prijavaForm.controls.korIme.value;
       this.kor.password = this.prijavaForm.controls.lozinka1.value;
       this.prijavaService.post(this.kor);
       
       this.prijavaForm.reset();
+    }else{
+      this.korIme.markAsTouched();
+      this.lozinka1.markAsTouched();
     }
   }
 }

@@ -9,7 +9,7 @@ import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, F
   styleUrls: ['./registracija.component.css']
 })
 export class RegistracijaComponent implements OnInit {
-  ngOnInit(){}
+  ngOnInit() { }
 
   kor: Korisnik;
 
@@ -48,9 +48,9 @@ export class RegistracijaComponent implements OnInit {
     });
   }
   private onSubmit() {
-    console.log(this.registracijaForm)
+    
     if (this.registracijaForm.valid) {
-      console.log("Form Submitted!");
+    
       this.kor = new Korisnik();
       this.kor.korIme = this.registracijaForm.controls.korIme.value;
       this.kor.ime = this.registracijaForm.controls.ime.value;
@@ -60,6 +60,13 @@ export class RegistracijaComponent implements OnInit {
       this.kor.lozinka2 = this.registracijaForm.controls.lozinka2.value;
       this.regServis.post(this.kor);
       this.registracijaForm.reset();
+    } else {
+      this.lozinka1.markAsTouched();
+      this.lozinka2.markAsTouched();
+      this.email.markAsTouched();
+      this.ime.markAsTouched();
+      this.prezime.markAsTouched();
+      this.korIme.markAsTouched();
     }
   }
 }

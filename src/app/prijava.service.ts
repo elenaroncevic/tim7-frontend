@@ -22,7 +22,7 @@ export class PrijavaService {
               data => {
                   this.token = data as Token;
                   localStorage.setItem('X-Auth-Token', this.token.token);
-                  this.tipKorisnikaService.getTipKorisnika();
+                  this.tipKorisnikaService.getUlogovanKorisnika();
               },
               headers => {
                   if (headers.status == 400) {
