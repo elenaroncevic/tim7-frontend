@@ -17,7 +17,7 @@
   word-wrap: break-word;
   overflow-x: auto;
   text-align: center;
-  background-image: url('../assets/pp.png');
+  /* background-image: url('../assets/pp.png'); */
   background-repeat: repeat-y repeat-x;
 }
 

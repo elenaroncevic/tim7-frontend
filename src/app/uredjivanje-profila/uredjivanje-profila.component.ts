@@ -16,9 +16,9 @@ export class UredjivanjeProfilaComponent implements OnInit {
   ime: FormControl;
   prezime: FormControl;
   email: FormControl;
- korisnik: Korisnik;
+  korisnik: Korisnik;
 
-  constructor(private router: Router, private izmenaPodatakService : IzmenaLicnihPodatakaService) { 
+  constructor(private router: Router, private izmenaPodatakService: IzmenaLicnihPodatakaService) {
 
     this.createFormControls();
     this.createForm();
@@ -38,33 +38,36 @@ export class UredjivanjeProfilaComponent implements OnInit {
     });
   }
   ngOnInit() {
-
-
+    this.ime.setValue(this.user.ime);
+    this.prezime.setValue(this.user.prezime);
+    this.email.setValue(this.user.email);
   }
 
   izmenaProfila() {
-    
-    if (this.uredjivanjeForm.valid) {
-     
-       this.korisnik = new Korisnik();
-        this.korisnik.ime = this.ime.value;
-        this.korisnik.prezime = this.prezime.value;
-        this.korisnik.email = this.email.value;
-      
-        this.izmenaPodatakService.izmenaLicnihPodataka(this.korisnik);
-      }
-     
-      
+    this.ime.markAsTouched();
+    this.prezime.markAsTouched();
+    this.email.markAsTouched();
+    this.ime.markAsDirty();
+    this.prezime.markAsDirty();
+    this.email.markAsDirty();
 
+    if (this.uredjivanjeForm.valid) {
+      this.korisnik = new Korisnik();
+      this.korisnik.ime = this.ime.value;
+      this.korisnik.prezime = this.prezime.value;
+      this.korisnik.email = this.email.value;
+
+      this.izmenaPodatakService.izmenaLicnihPodataka(this.korisnik);
     }
-  
+  }
+
   otkazi() {
     this.uredjivanjeForm.reset();
     this.router.navigate(['/profilKorisnik']);
   }
 
-  get user(): any{
+  get user(): any {
     return JSON.parse(localStorage.getItem('ulogovan')) as PrijavljenKorisnik;
- }
+  }
 
 }

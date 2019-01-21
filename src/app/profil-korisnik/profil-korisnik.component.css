@@ -14,5 +14,15 @@ button{
   p {
     margin-top: 100px;
   }
- 
-  
+ h3,h1{
+
+  color:#000080
+ }
+  item2{
+    background :white ;
+
+  }
+
+  .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: #e6f3ff;
+ }

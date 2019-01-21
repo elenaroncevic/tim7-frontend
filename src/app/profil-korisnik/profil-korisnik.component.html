@@ -1,33 +1,43 @@
 <div class="register-section">
-        <div class="prijava-section">
-            <div class="col-md-3"></div>
-            <div class="col-md-6 container">
-                <br/><br/>
-              <h1>{{user.ime}}  {{user.prezime}}</h1>
-              <br/>
+  <div class="prijava-section">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 container">
+      <br /><br />
+      <h1>{{user.ime}} {{user.prezime}}</h1>
+      <br />
 
-              <h3>Korisnicko ime: {{user.ime}}  </h3>
-              <h3>Email adresa: {{user.email}}  </h3>
-              <h3  *ngIf=" user.status!=null">Status: {{user.status}}  </h3><a href="">promeni status </a>
+      <h3>Korisnicko ime: {{user.korIme}} </h3>
+      <h3>Email adresa: {{user.email}} </h3>
+      <h3 *ngIf=" user.status!=null">Status: {{user.status}} </h3><a href="">promeni status </a>
 
 
-<p></p>
+      <p></p>
 
-<h3>Kupljene karte</h3>
-<br/>
-              
-              <table class="table">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th scope="col">Tip karte</th>
-                        <th scope="col">Vrsta prevoza</th>
-                        <th scope="col">Zona/Linija</th>
-                        <th scope="col">Datum isteka</th>
-                        <th scope="col">Cena</th>
-                        <th scope="col">Cekirana dnevna</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                     
-                    </tbody>
-                  </table>
+      <h3>Kupljene karte</h3>
+      <br />
+
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Tip karte</th>
+            <th scope="col">Vrsta prevoza</th>
+            <th scope="col">Zona/Linija</th>
+            <th scope="col">Datum isteka</th>
+            <th scope="col">Cena</th>
+            <th scope="col">Upotrebljena(dnevna)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr scope="col" *ngFor="let karta of kupljeneKarte">
+            <td>{{karta.tipKarte}}</td>
+            <td>{{karta.tipPrevoza}}</td>
+            <td>{{karta.linijaZona}}</td>
+            <td>{{karta.datumIsteka}}</td>
+            <td>{{karta.cena}}</td>
+            <td *ngIf="karta.tipKarte != 'DNEVNA'">-</td>
+            <td *ngIf="karta.tipKarte == 'DNEVNA' && karta.cekiranaDnevnaKarta == false">Neupotrebljena</td>
+            <td *ngIf="karta.tipKarte == 'DNEVNA' && karta.cekiranaDnevnaKarta != false">Upotrebljena</td>
+
+          </tr>
+        </tbody>
+      </table>

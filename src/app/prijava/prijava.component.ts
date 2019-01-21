@@ -47,6 +47,9 @@ export class PrijavaComponent implements OnInit {
       this.prijavaService.post(this.kor);
       
       this.prijavaForm.reset();
+    }else{
+      this.korIme.markAsTouched();
+      this.lozinka1.markAsTouched();
     }
   }
 }

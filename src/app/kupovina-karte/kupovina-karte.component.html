@@ -26,7 +26,7 @@
               <option *ngFor="let vozilo of tipoviVozila" [ngValue]="vozilo.name">{{vozilo.name}}</option>
             </select>
             <div class="form-control-feedback" *ngIf="voziloControl.errors && (voziloControl.dirty || voziloControl.touched)">
-              <p *ngIf="voziloControl.errors.required">Tip karte je obavezan.</p>
+              <p *ngIf="voziloControl.errors.required">Vrsta prevoza obavezna.</p>
             </div>
             <br />
           </div>
@@ -37,8 +37,8 @@
               <option [ngValue]="null" hidden>Odaberite {{tipRute}}</option>
               <option *ngFor="let zl of tipoviRute" [ngValue]="zl.name">{{zl.name}}</option>
             </select>
-            <div class="form-control-feedback" *ngIf="rutaControl.errors && (rutaControl.dirty || rutaControl.touched)">
-              <p *ngIf="rutaControl.errors.required">Tip karte je obavezan.</p>
+            <div class="form-control-feedback" *ngIf="rutaControl.errors && (rutaControl.dirty || rutaControl.touched) && tipKarte!=null">
+              <p *ngIf="rutaControl.errors.required">Linij/Zona su obavezni.</p>
             </div>
             <br />
           </div>

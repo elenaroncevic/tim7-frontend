@@ -104,6 +104,11 @@ export class KupovinaKarteComponent implements OnInit {
       this.tipVozila = null;
       this.kupovinaKarteForma.reset();
 
+    } else {
+      this.kartaControl.markAsTouched();
+      this.rutaControl.markAsTouched();
+      this.voziloControl.markAsTouched();
+
     }
   }
 

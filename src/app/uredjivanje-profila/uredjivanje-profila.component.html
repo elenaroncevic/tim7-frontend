@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="form-group" [ngClass]="{'has-danger': email.invalid && (email.dirty ),'has-success': email.valid && (email.dirty )}">
-          <input class="form-control" formControlName="email" placeholder="Email*" name="email" required value={{user.email}} required>
+          <input class="form-control" formControlName="email" placeholder="Email*" name="email" value={{user.email}} required>
           <div class="form-control-feedback" *ngIf="email.errors && (email.dirty)">
             <p *ngIf="email.errors.required">Email je obavezan.</p>
             <p *ngIf="email.errors.pattern">Uneli ste nepostojecu email adresu.</p>
