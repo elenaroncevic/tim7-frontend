@@ -19,6 +19,7 @@
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
+              <th scope="col">Kod</th>
             <th scope="col">Tip karte</th>
             <th scope="col">Vrsta prevoza</th>
             <th scope="col">Zona/Linija</th>
@@ -29,6 +30,7 @@
         </thead>
         <tbody>
           <tr scope="col" *ngFor="let karta of kupljeneKarte">
+              <td>{{karta.kod}}</td>
             <td>{{karta.tipKarte}}</td>
             <td>{{karta.tipPrevoza}}</td>
             <td>{{karta.linijaZona}}</td>

@@ -1,6 +1,7 @@
 
     
     export class Karta {
+        kod : String;
         datumIsteka: Date;
         cena: number;
         tipKarte : String;
