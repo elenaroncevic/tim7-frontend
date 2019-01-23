@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -20,6 +20,8 @@ import { KupovinaKarteComponent } from './kupovina-karte/kupovina-karte.componen
 import { UredjivanjeProfilaComponent } from './uredjivanje-profila/uredjivanje-profila.component';
 import { FormCenovnikComponent } from './form-cenovnik/form-cenovnik.component';
 import { IzmenaLozinkeComponent } from './izmena-lozinke/izmena-lozinke.component';
+import { MrezaLinijaComponent } from './mreza-linija/mreza-linija.component';
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
@@ -35,9 +37,9 @@ import { IzmenaLozinkeComponent } from './izmena-lozinke/izmena-lozinke.componen
     KupovinaKarteComponent,
     UredjivanjeProfilaComponent,
     IzmenaLozinkeComponent,
- 
-    
-    FormCenovnikComponent
+    MrezaLinijaComponent,
+    FormCenovnikComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,

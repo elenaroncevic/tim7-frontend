@@ -13,6 +13,8 @@ import { FormCenovnikComponent} from './form-cenovnik/form-cenovnik.component';
 import { KupovinaKarteComponent} from './kupovina-karte/kupovina-karte.component';
 import { UredjivanjeProfilaComponent} from './uredjivanje-profila/uredjivanje-profila.component';
 import { IzmenaLozinkeComponent} from './izmena-lozinke/izmena-lozinke.component';
+import { MrezaLinijaComponent } from './mreza-linija/mreza-linija.component';
+import { MapComponent } from './map/map.component';
 
 
 const routes: Routes = [
@@ -27,7 +29,8 @@ const routes: Routes = [
   { path: 'uredjivanjeProfila', component: UredjivanjeProfilaComponent },
   { path: 'izmenaLozinke', component: IzmenaLozinkeComponent },
 
-  { path: 'formCenovnik', component: FormCenovnikComponent}
+  { path: 'formCenovnik', component: FormCenovnikComponent},
+  { path: 'mrezaLinija', component: MrezaLinijaComponent}
 ];
 
 @NgModule({
