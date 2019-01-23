@@ -21,6 +21,7 @@
     "@angular/router": "~7.1.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.1",
     "@ngx-pwa/local-storage": "^7.4.0",
+    "@types/googlemaps": "^3.30.16",
     "angular-cli": "^1.0.0-beta.28.3",
     "bootstrap": "^4.0.0-alpha.4",
     "core-js": "^2.5.4",

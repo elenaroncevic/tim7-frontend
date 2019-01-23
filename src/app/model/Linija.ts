@@ -1,21 +1,19 @@
+import { Stanica } from './Stanica';
+
 export class Linija {
    name: string;
    public id: number;
-   zonesIds : Zona[];
-   stationsIds: string[];
+   zones: Zona[];
+   stations: Stanica[];
 
-  constructor(){
-    
-  }
+  constructor() {  }
 }
 
 export class Zona {
    name: string;
    id: number;
 
-  constructor(){
-    
-  }
+  constructor() {}
 }
 
 
