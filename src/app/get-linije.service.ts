@@ -10,6 +10,6 @@ export class GetLinijeService {
   constructor(private httpClient: HttpClient) { }
 
   getLinije(): any {
-    return this.httpClient.get("http://localhost:8080/linije/izlistajLinije", { headers: { 'X-Auth-Token': localStorage.getItem('X-Auth-Token') } })
+    return this.httpClient.get("http://localhost:8080/linije/sve", { headers: { 'X-Auth-Token': localStorage.getItem('X-Auth-Token') } })
   }
 }

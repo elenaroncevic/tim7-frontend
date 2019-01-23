@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetLinijeService } from '../get-linije.service';
 import { GetZoneService } from '../get-zone.service';
-import { Ruta } from '../model/Ruta';
+
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Karta } from '../model/Karta';
 import { KupovinaKarteService } from '../kupovina-karte.service';
@@ -70,15 +70,15 @@ export class KupovinaKarteComponent implements OnInit {
     this.rutaControl.reset();
     if (this.tipKarte == "DNEVNA") {
       this.linijeServis.getLinije().subscribe(data => {
-        data.linijeZone.forEach(element => {
-          this.tipoviRute.push({ name: element });
+        data.forEach(element => {
+          this.tipoviRute.push({ name: element.name });
         });
         this.tipRute = "liniju";
       })
     } else {
       this.zoneServis.getZone().subscribe(data => {
-        data.linijeZone.forEach(element => {
-          this.tipoviRute.push({ name: element });
+        data.forEach(element => {
+          this.tipoviRute.push({ name: element.name });
         });
         this.tipRute = "zonu";
       })
