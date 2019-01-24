@@ -9,35 +9,41 @@ import { map } from 'rxjs/operators';
   templateUrl: './mreza-linija.component.html',
   styleUrls: ['./mreza-linija.component.css']
 })
-export class MrezaLinijaComponent implements OnInit, AfterContentInit {
+export class MrezaLinijaComponent implements OnInit {
 
-    @ContentChild(MapComponent) mapa: MapComponent;
     linije: Linija[];
     zones: Zona[];
     name_of_zone: string;
-
-    ngAfterContentInit() {
-        alert(this.mapa.map.getCenter().lat);
-    }
+    title_zone: string;
+    izabranaLinija: Linija;
+    loadingLinije: boolean;
 
 
 
   constructor(private mrezaLinijaService: MrezaLinijaService) { }
 
   ngOnInit() {
+    this.loadingLinije = false;
+    this.title_zone = 'Ucitavaju se zone, sacekajte par sekundi';
     this.getZone();
     this.name_of_zone = 'Izaberi zonu za prikaz linija';
+    this.izabranaLinija = {'id': -1, 'name': 'null', 'zones': [], 'stations': []};
+
   }
 
   getLinije( zona) {
+    this.name_of_zone = 'Ucitavaju se linije, sacekajte par sekundi';
+    this.linije = [];
+    this.loadingLinije = true;
     this.mrezaLinijaService.getLinije(zona)
         .then((response) => {
             this.linije = response;
             this.name_of_zone = 'Linije u zoni: ' + zona.name;
+            this.loadingLinije = false;
         }).catch((error) => {
             console.log(error);
-            this.linije = [];
             this.name_of_zone = 'Nema linija za izabranu zonu!';
+            this.loadingLinije = false;
         });
   }
 
@@ -47,12 +53,14 @@ export class MrezaLinijaComponent implements OnInit, AfterContentInit {
                 this.zones = response;
                 const sve = {'id' : null, 'name': 'sve'};
                 this.zones.push(sve);
+                this.title_zone = 'ZONE';
             }).catch((error) => {
                 console.log(error);
+                this.title_zone = 'Problem sa ucitavanjem, pokusajte ponovo uskoro';
             });
     }
 
     showStanice( linija ) {
-        this.mapa.mapProperties.center = new google.maps.LatLng(40.1234, 8.0266);
+        this.izabranaLinija = linija;
     }
   }

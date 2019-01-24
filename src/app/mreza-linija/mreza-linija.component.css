@@ -9,14 +9,19 @@ button:hover{
     background: grey;
 }
 
+button:disabled{
+    color: black;
+    cursor: not-allowed;
+}
+
 #nazivi_mreza{
     border: 2px solid blue;
     overflow-y: auto;
-    height: 45%;
+    height: 20%;
 }
 
 #nazivi_zona{
     border: 2px solid blue;
     overflow-y: auto;
-    height: 15%;
+    height: 20%;
 }
