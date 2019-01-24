@@ -22,6 +22,10 @@ import { FormCenovnikComponent } from './form-cenovnik/form-cenovnik.component';
 import { IzmenaLozinkeComponent } from './izmena-lozinke/izmena-lozinke.component';
 import { MrezaLinijaComponent } from './mreza-linija/mreza-linija.component';
 import { MapComponent } from './map/map.component';
+import { AdminZoneComponent } from './admin-zone/admin-zone.component';
+import { AdminStaniceComponent } from './admin-stanice/admin-stanice.component';
+import { AdminLinijeComponent } from './admin-linije/admin-linije.component';
+import { AdminVozilaComponent } from './admin-vozila/admin-vozila.component';
 
 
 @NgModule({
@@ -40,6 +44,10 @@ import { MapComponent } from './map/map.component';
     MrezaLinijaComponent,
     FormCenovnikComponent,
     MapComponent,
+    AdminZoneComponent,
+    AdminStaniceComponent,
+    AdminLinijeComponent,
+    AdminVozilaComponent,
   ],
   imports: [
     BrowserModule,

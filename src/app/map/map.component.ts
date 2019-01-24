@@ -30,7 +30,6 @@ export class MapComponent  implements OnInit {
     this.markers = [];
     this.iws = [];
     for (let stanica of line.stations) {
-        console.log(stanica.name);
         this.mapProperties = {
             center: new google.maps.LatLng(stanica.latitude, stanica.longitude),
             zoom: 14,

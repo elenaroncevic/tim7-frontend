@@ -15,6 +15,10 @@ import { UredjivanjeProfilaComponent} from './uredjivanje-profila/uredjivanje-pr
 import { IzmenaLozinkeComponent} from './izmena-lozinke/izmena-lozinke.component';
 import { MrezaLinijaComponent } from './mreza-linija/mreza-linija.component';
 import { MapComponent } from './map/map.component';
+import { AdminZoneComponent } from './admin-zone/admin-zone.component';
+import { AdminStaniceComponent } from './admin-stanice/admin-stanice.component';
+import { AdminLinijeComponent } from './admin-linije/admin-linije.component';
+import { AdminVozilaComponent } from './admin-vozila/admin-vozila.component';
 
 
 const routes: Routes = [
@@ -30,7 +34,11 @@ const routes: Routes = [
   { path: 'izmenaLozinke', component: IzmenaLozinkeComponent },
 
   { path: 'formCenovnik', component: FormCenovnikComponent},
-  { path: 'mrezaLinija', component: MrezaLinijaComponent}
+  { path: 'mrezaLinija', component: MrezaLinijaComponent},
+  { path: 'adminZone', component: AdminZoneComponent},
+  { path: 'adminLinije', component: AdminLinijeComponent},
+  { path: 'adminStanice', component: AdminStaniceComponent},
+  { path: 'adminVozila', component: AdminVozilaComponent}
 ];
 
 @NgModule({

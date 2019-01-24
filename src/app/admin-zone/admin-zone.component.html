@@ -1,0 +1,29 @@
+<div id="nazivi_zona">
+    <p>{{title}}<button id="dodaj_dugme" [disabled]="!viewMode">+ Dodaj zonu</button></p>
+    <button *ngFor="let zone of zones" (click)="openZoneInfo(zone)" [disabled]="!loadingZone">{{zone.name}}</button>
+</div>
+
+<div id="current-zone">
+    <p *ngIf="!showZone">Izaberi zonu za prikaz informacija</p>
+    <div *ngIf="showZone">
+        <p>Naziv: 
+        <input [value]="currentZone.name" [disabled]="loadingZone" ></p>
+            
+        <table >
+            <tr>
+                <th>Oznaka</th>
+                <th>Ukloni iz zone</th>
+            </tr>
+            <tr *ngFor="let line of lines">
+                <td>{{line.name}}</td>
+                <td><button (click)="removeLine(line)">X</button></td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="buttons" *ngIf="showZone">
+        <button (click)="saveChanges()">Sacuvaj</button>
+        <button (click)="deleteZone()">Obrisi</button>
+    </div>
+</div>

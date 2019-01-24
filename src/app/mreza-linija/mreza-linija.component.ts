@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, ContentChild, AfterContentInit } from '@angular/core';
-import { MrezaLinijaService } from '../mreza-linija.service';
 import { Linija, Zona } from '../model/Linija';
 import { MapComponent } from '../map/map.component';
 import { map } from 'rxjs/operators';
+import { ZoneService } from '../zone.service';
+import { LinijeService } from '../linije.service';
 
 @Component({
   selector: 'app-mreza-linija',
@@ -20,7 +21,7 @@ export class MrezaLinijaComponent implements OnInit {
 
 
 
-  constructor(private mrezaLinijaService: MrezaLinijaService) { }
+  constructor(private zoneService: ZoneService, private linijeService: LinijeService) { }
 
   ngOnInit() {
     this.loadingLinije = false;
@@ -35,7 +36,7 @@ export class MrezaLinijaComponent implements OnInit {
     this.name_of_zone = 'Ucitavaju se linije, sacekajte par sekundi';
     this.linije = [];
     this.loadingLinije = true;
-    this.mrezaLinijaService.getLinije(zona)
+    this.linijeService.getLinije(zona)
         .then((response) => {
             this.linije = response;
             this.name_of_zone = 'Linije u zoni: ' + zona.name;
@@ -48,7 +49,7 @@ export class MrezaLinijaComponent implements OnInit {
   }
 
     getZone() {
-        this.mrezaLinijaService.getZone()
+        this.zoneService.getZone()
             .then((response) => {
                 this.zones = response;
                 const sve = {'id' : null, 'name': 'sve'};
