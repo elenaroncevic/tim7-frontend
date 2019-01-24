@@ -61,7 +61,15 @@ export class IzmenaLozinkeComponent implements OnInit {
 
   otkazi() {
     this.lozinkaForm.reset();
-    this.router.navigate(['/profilKorisnik']);
+    if (this.user.uloga === "KORISNIK") {
+      this.router.navigate(['/profilKorisnik']);
+  } else if (this.user.uloga === "ADMINISTRATOR") {                    
+      this.router.navigate(['/profilAdmin']);
+  } else if (this.user.uloga === "VERIFIKATOR") {
+      this.router.navigate(['/profilVerifikator']);
+  } else {
+      this.router.navigate(['/profilKondukter']);
+  }
   }
 
   get user(): any {
