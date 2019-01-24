@@ -26,6 +26,7 @@
             <th scope="col">Datum isteka</th>
             <th scope="col">Cena</th>
             <th scope="col">Upotrebljena(dnevna)</th>
+            <th scope="col">Odobrena(visednevna)</th>
           </tr>
         </thead>
         <tbody>
@@ -39,6 +40,10 @@
             <td *ngIf="karta.tipKarte != 'DNEVNA'">-</td>
             <td *ngIf="karta.tipKarte == 'DNEVNA' && karta.cekiranaDnevnaKarta == false">Neupotrebljena</td>
             <td *ngIf="karta.tipKarte == 'DNEVNA' && karta.cekiranaDnevnaKarta != false">Upotrebljena</td>
+            <td *ngIf="karta.odobrenaKupovina == false ">Odbijena</td>
+            <td *ngIf="karta.odobrenaKupovina == true ">Odobrena</td>
+            <td *ngIf="karta.odobrenaKupovina == null && karta.tipKarte == 'DNEVNA'">-</td>
+            <td *ngIf="karta.odobrenaKupovina == null && karta.tipKarte !='DNEVNA' ">Na cekanju</td>
 
           </tr>
         </tbody>

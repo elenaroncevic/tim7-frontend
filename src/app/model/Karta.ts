@@ -8,5 +8,6 @@
         tipPrevoza : String;
         linijaZona : String;
         statusKorisnika:string;
-        cekiranaDnevnaKarta : boolean;
+        cekiranaDnevnaKarta : Boolean;
+        odobrenaKupovina: Boolean;
     }

@@ -89,7 +89,7 @@ export class KupovinaKarteComponent implements OnInit {
   kupiKartu() {
     if (this.kupovinaKarteForma.valid) {
       var ulogovan = JSON.parse(localStorage.getItem('ulogovan')) as PrijavljenKorisnik;
-      if (ulogovan.status == null) {
+      if (this.tipKarte!= "DNEVNA" && ulogovan.status == null) {
         alert("Nije potvrdjen vas status. Proverite da li ste prilozili potvrdu.")
       } else {
         this.karta = new Karta();
