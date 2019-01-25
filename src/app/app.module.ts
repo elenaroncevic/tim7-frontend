@@ -26,6 +26,7 @@ import { AdminZoneComponent } from './admin-zone/admin-zone.component';
 import { AdminStaniceComponent } from './admin-stanice/admin-stanice.component';
 import { AdminLinijeComponent } from './admin-linije/admin-linije.component';
 import { AdminVozilaComponent } from './admin-vozila/admin-vozila.component';
+import { ProveraKarteComponent } from './provera-karte/provera-karte.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { AdminVozilaComponent } from './admin-vozila/admin-vozila.component';
     AdminStaniceComponent,
     AdminLinijeComponent,
     AdminVozilaComponent,
+    ProveraKarteComponent,
   ],
   imports: [
     BrowserModule,
