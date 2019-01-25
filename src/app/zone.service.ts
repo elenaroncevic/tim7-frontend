@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Zona, Linija } from './model/Linija';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LocalStorage } from '@ngx-pwa/local-storage';
+import { UpdatedZona } from './model/UpdatedZona';
 
 @Injectable({
     providedIn: 'root'
@@ -18,30 +19,23 @@ export class ZoneService {
     }
 
     deleteZone(zone: Zona) {
-        const httpOptions = {
-          headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-        };
         var token = localStorage.getItem('X-Auth-Token');
-        httpOptions.headers = httpOptions.headers.append( 'X-Auth-Token' , token);
-        return this.http.delete<void>(this.zoneUrl + '/brisi/' + zone.id, httpOptions).toPromise();
+        let httpOptions = {
+          headers: new HttpHeaders({ 'X-Auth-Token' : token })
+        };
+        return this.http.delete<Zona[]>(this.zoneUrl + '/brisi/' + zone.id, httpOptions).toPromise();
     }
 
-    updateZone(zone: Zona) {
-        const httpOptions = {
-          headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-        };
+    updateZone(zone: any) {
         var token = localStorage.getItem('X-Auth-Token');
-        httpOptions.headers = httpOptions.headers.append( 'X-Auth-Token' , token);
-        return this.http.put<void>(this.zoneUrl + '/mijenjaj', zone, httpOptions).toPromise();
-    }
-
-    removeLineFromZone(zone: Zona, id: number) {
-        const httpOptions = {
-          headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        let httpOptions = {
+          headers: new HttpHeaders({ 'Content-Type': 'application/json', 'X-Auth-Token' : token})
         };
-        var token = localStorage.getItem('X-Auth-Token');
-        httpOptions.headers = httpOptions.headers.append( 'X-Auth-Token' , token);
-        return this.http.put<Linija[]>(this.zoneUrl + '/ukloniLiniju/' + id, zone, httpOptions).toPromise();
+        if ( zone.id === null) {
+            return this.http.post<Zona[]>(this.zoneUrl + '/dodaj', zone, httpOptions).toPromise();
+        } else {
+            return this.http.put<Zona[]>(this.zoneUrl + '/mijenjaj', zone, httpOptions).toPromise();
+        }
     }
 
     constructor(private http: HttpClient, protected localStorage: LocalStorage ) { }

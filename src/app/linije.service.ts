@@ -14,7 +14,7 @@ export class LinijeService {
         const httpOptions = {
           headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
-        if (zona.id == null) {
+        if (zona == null || zona.id == null) {
             return this.http.get<Linija[]>(this.linijeUrl + '/sve', httpOptions).toPromise();
         } else {
             return this.http.get<Linija[]>(this.linijeUrl + '/sveJedneZone/' + zona.id, httpOptions).toPromise();

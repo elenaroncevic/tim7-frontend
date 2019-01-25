@@ -38,7 +38,7 @@ button:disabled{
 #current-zone{
     border: 2px solid blue;
     overflow-y: auto;
-    height: 50%;
+    height: 65%;
     background: #a9bee8;
     color: white;
 }
