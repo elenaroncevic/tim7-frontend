@@ -21,7 +21,7 @@
           <br />
           
           <div class="form-group" [ngClass]="{'has-danger': voziloControl.invalid && (voziloControl.dirty || voziloControl.touched), 'has-success': voziloControl.valid && (voziloControl.dirty || voziloControl.touched)}">
-            <select class="form-control" formControlName="voziloControl" [(ngModel)]="tipVozila" required>
+            <select class="form-control" formControlName="voziloControl" [(ngModel)]="tipVozila" (change)="promenaTipaRute()" required>
               <option [ngValue]="null" hidden>Odaberite tip vozila</option>
               <option *ngFor="let vozilo of tipoviVozila" [ngValue]="vozilo.name">{{vozilo.name}}</option>
             </select>
@@ -32,7 +32,7 @@
           </div>
 
           <div class="form-group" [ngClass]="{'has-danger': rutaControl.invalid && (rutaControl.dirty || rutaControl.touched), 'has-success': rutaControl.valid && (rutaControl.dirty || rutaControl.touched)}">
-            <select *ngIf="tipKarte!=null" class="form-control" formControlName="rutaControl" [(ngModel)]="ruta"
+            <select *ngIf="tipKarte!=null && tipVozila!=null" class="form-control" formControlName="rutaControl" [(ngModel)]="ruta"
               required>
               <option [ngValue]="null" hidden>Odaberite {{tipRute}}</option>
               <option *ngFor="let zl of tipoviRute" [ngValue]="zl.name">{{zl.name}}</option>
@@ -44,6 +44,7 @@
           </div>
 
           <div class="modal-footer">
+            <p class="footnote">*Ukoliko za odabran tip karte i prevoz nema ponudjenih linija/zone, nije moguce kupiti odabranu kartu.</p>
             <button class="btn btn-primary" type="submit">Kupi</button>
             <button class="btn btn-primary" type="button" (click)="otkazi()">Otkazi</button>
           </div>
