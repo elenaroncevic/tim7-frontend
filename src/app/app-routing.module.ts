@@ -19,7 +19,7 @@ import { AdminZoneComponent } from './admin-zone/admin-zone.component';
 import { AdminStaniceComponent } from './admin-stanice/admin-stanice.component';
 import { AdminLinijeComponent } from './admin-linije/admin-linije.component';
 import { AdminVozilaComponent } from './admin-vozila/admin-vozila.component';
-
+import { ProveraKarteComponent } from './provera-karte/provera-karte.component';
 
 const routes: Routes = [
   { path: 'cenovnik', component: CenovnikComponent },
@@ -38,7 +38,8 @@ const routes: Routes = [
   { path: 'adminZone', component: AdminZoneComponent},
   { path: 'adminLinije', component: AdminLinijeComponent},
   { path: 'adminStanice', component: AdminStaniceComponent},
-  { path: 'adminVozila', component: AdminVozilaComponent}
+  { path: 'adminVozila', component: AdminVozilaComponent},
+  { path: 'proveraKarte', component: ProveraKarteComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,12 @@
+button{
+    background :#000080 ;
+    color:white; 
+    width:100%;
+  }
+  label{
+    color:#000080 ;
+  }
+  .check-card-section{
+    background: white;
+    height: 100%;
+  }

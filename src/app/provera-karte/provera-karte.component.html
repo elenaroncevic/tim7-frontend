@@ -1,0 +1,41 @@
+<div class="check-card-section">
+  <div class="col-md-4"></div>
+  <div class="col-md-3 container">
+    <br>
+    <h4><label>Cekiranje karte: </label></h4>
+    <br>
+    <br>
+
+    
+      <div class="form-group">
+        <select class="dropdown-select" [(ngModel)]="izabranaLinija" id="nazivi_linija">
+          <option class="dropdown-select" *ngFor="let linija of listaLinija" [value]="linija.name">{{linija.name}}</option>
+        </select> 
+      </div>
+
+      <div class="form-group">
+        <select class="dropdown-select" [(ngModel)]="tipPrevoza" id="tipovi_prevoza">
+          <option value="AUTOBUS">AUTOBUS</option>
+          <option value="METRO">METRO</option>
+          <option value="TRAMVAJ">TRAMVAJ</option>
+        </select> 
+        </div>
+    <form novalidate [formGroup]="proveraKarteForm" (ngSubmit)="proveriKartu()">
+      <div class="form-group" [ngClass]="{'has-danger': kodKarte.invalid && (kodKarte.dirty || kodKarte.touched), 'has-success': kodKarte.valid && (kodKarte.dirty || kodKarte.touched)}">
+        <input class="form-control" formControlName="kodKarte" name="kodKarte" placeholder="korisnicki kod" required>
+        <div class="form-control-feedback" *ngIf="kodKarte.errors && (kodKarte.dirty || kodKarte.touched)">
+          <p *ngIf="kodKarte.errors.required">Korisnicki kod je obavezan.</p>
+          <p *ngIf="kodKarte.errors.maxlength">Kod mora imati najvise 8 karaktera.</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="button" (click)="resetKodPolje()">Ponisti</button>
+        <button class="btn btn-primary" type="submit">Proveri kod</button>       
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
