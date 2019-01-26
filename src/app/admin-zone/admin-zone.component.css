@@ -46,28 +46,3 @@ button:disabled{
 .buttons{
     float: bottom;
 }
-
-
-table {
-  border: 2px solid #a9bee8;
-  font-family: Lucida Console, Arial, Helvetica;
-  border-collapse: collapse;
-  width: 100%;
-  max-width: 650px;
-  word-wrap: auto;
-  text-align: left;
-  margin: 0 auto;
-  color: #000059;
-  background-color: #a9bee8;
-}
-
-table td{
-    border: 2px solid #a9bee8;
-    
-}
-
-  table th {
-    text-align: left;
-    background-color: #000080;
-    color: #e3eaff;
-  }

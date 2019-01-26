@@ -16,6 +16,7 @@ export class AdminZoneComponent implements OnInit {
     currentZone: Zona;
     showZone: boolean;
     loadingZone: boolean;
+    loadingZones: boolean;
     lines: Linija[];
     allLines: Linija[];
     dropdownSettings: any;
@@ -35,16 +36,23 @@ export class AdminZoneComponent implements OnInit {
             itemsShowLimit: 7,
             allowSearchFilter: true
         };
+        this.loadingZones = true;
         this.currentZone = null;
         this.showZone = false;
         this.loadingZone = false;
         this.allLines = [];
         this.title = 'Ucitavaju se zone, pricekajte nekoliko sekundi';
         this.title_zone = 'Izaberi zonu za prikaz informacija';
-        this.zoneService.getZone()
+        this.removedLinesIds = [];
+        this.zoneService.getZones()
             .then((response) => {
-                this.zones = response;
-                this.title = 'ZONE';
+                if ( response.length === 0) {
+                    this.title = 'Nema zona za prikazivanje; dodajte nove zone';
+                } else {
+                    this.zones = response;
+                    this.title = 'ZONE';
+                }
+                this.loadingZones = false;
             }).catch((error) => {
                 this.title = 'Problem sa ucitavanjem, pokusajte ponovo uskoro';
             });
@@ -86,8 +94,11 @@ export class AdminZoneComponent implements OnInit {
 
 
   saveChanges() {
+            if (this.currentZone.name === '') {
+                return;
+            }
             const updatedZone = {'id': this.currentZone.id, 'name': this.currentZone.name, 'lines': this.lines,
-             'removedLines': this.removedLinesIds};
+             'removedLinesIds': this.removedLinesIds};
 
             this.showZone = false;
             this.loadingZone = true;
@@ -99,7 +110,7 @@ export class AdminZoneComponent implements OnInit {
                     this.title_zone = 'Zona sacuvana, izaberite novu za prikaz informacija';
                 }).catch((error) => {
                     this.loadingZone = false;
-                    this.title_zone = 'Problem prilikom cuvanja podataka i pokusajte ponovo';
+                    this.title_zone = 'Problem prilikom cuvanja podataka, pokusajte ponovo';
                 });
         }
 
@@ -137,14 +148,12 @@ export class AdminZoneComponent implements OnInit {
   lineRemoved(linija: any) {
     if (!this.removedLinesIds.includes(linija.id)) {
         this.removedLinesIds.push(linija.id);
-        alert(this.removedLinesIds.length);
     }
   }
 
   lineAdded (linija: any) {
     if (this.removedLinesIds.includes(linija.id)) {
         this.removedLinesIds.splice( this.removedLinesIds.indexOf(linija.id), 1);
-        alert(this.removedLinesIds.length);
     }
   }
 

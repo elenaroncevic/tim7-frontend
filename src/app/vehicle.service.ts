@@ -1,42 +1,40 @@
 import { Injectable } from '@angular/core';
-import { Zona, Linija } from './model/Linija';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LocalStorage } from '@ngx-pwa/local-storage';
-import { UpdatedZona } from './model/UpdatedZona';
+import { Vozilo } from './model/Vozilo';
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class ZoneService {
-    private zoneUrl = 'http://localhost:8080/zone';
+export class VehicleService {
+    private vehicleUrl = 'http://localhost:8080/vozila';
 
-    getZones() {
+    getVehicles() {
         const httpOptions = {
           headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
-        return this.http.get<Zona[]>(this.zoneUrl + '/sve', httpOptions).toPromise();
+        return this.http.get<Vozilo[]>(this.vehicleUrl + '/sve', httpOptions).toPromise();
     }
 
-    deleteZone(zone: Zona) {
+    deleteVehicle(vehicle: Vozilo) {
         var token = localStorage.getItem('X-Auth-Token');
         let httpOptions = {
           headers: new HttpHeaders({ 'X-Auth-Token' : token })
         };
-        return this.http.delete<Zona[]>(this.zoneUrl + '/brisi/' + zone.id, httpOptions).toPromise();
+        return this.http.delete<Vozilo[]>(this.vehicleUrl + '/brisi/' + vehicle.id, httpOptions).toPromise();
     }
 
-    updateZone(zone: any) {
+    updateVehicle(vehicle: any) {
         var token = localStorage.getItem('X-Auth-Token');
         let httpOptions = {
           headers: new HttpHeaders({ 'Content-Type': 'application/json', 'X-Auth-Token' : token})
         };
-        if ( zone.id === null) {
-            return this.http.post<Zona[]>(this.zoneUrl + '/dodaj', zone, httpOptions).toPromise();
+        if ( vehicle.id === null) {
+            return this.http.post<Vozilo[]>(this.vehicleUrl + '/dodaj', vehicle, httpOptions).toPromise();
         } else {
-            return this.http.put<Zona[]>(this.zoneUrl + '/mijenjaj', zone, httpOptions).toPromise();
+            return this.http.put<Vozilo[]>(this.vehicleUrl + '/mijenjaj', vehicle, httpOptions).toPromise();
         }
     }
-
     constructor(private http: HttpClient, protected localStorage: LocalStorage ) { }
 }

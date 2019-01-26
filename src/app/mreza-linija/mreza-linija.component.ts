@@ -49,7 +49,7 @@ export class MrezaLinijaComponent implements OnInit {
   }
 
     getZone() {
-        this.zoneService.getZone()
+        this.zoneService.getZones()
             .then((response) => {
                 this.zones = response;
                 const sve = {'id' : null, 'name': 'sve'};
