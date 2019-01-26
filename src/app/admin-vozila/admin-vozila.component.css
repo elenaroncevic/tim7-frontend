@@ -1,0 +1,86 @@
+
+button{
+    border: none;
+    background: #008CBA ;
+    margin: 5px;
+    color: white;
+}
+
+button:hover{
+    background: grey;
+}
+
+button:disabled{
+    color: black;
+    cursor: not-allowed;
+}
+
+#add-button{
+    background: red;
+    color: darkblue;
+    float: right; 
+}
+#add-button:hover{
+    background: grey;
+}
+
+#all-vehicles{
+    border: 2px solid blue;
+    overflow-y: auto;
+    height: 55%;
+    background: #000080;
+}
+
+#all-vehicles p{
+    color: white;
+}
+
+#current-vehicle{
+    border: 2px solid blue;
+    overflow-y: auto;
+    height: 65%;
+    background: #a9bee8;
+    color: white;
+}
+
+.buttons{
+    float: bottom;
+}
+
+
+table {
+  border: 2px solid #a9bee8;
+  font-family: Lucida Console, Arial, Helvetica;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 650px;
+  max-height: 10px;
+  overflow-y: auto;
+  word-wrap: auto;
+  text-align: center;
+  margin: 0 auto;
+  color: #000059;
+  background-color: #a9bee8;
+}
+
+table th {
+  text-align: left;
+  background-color: black;
+  color: #e3eaff;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+#current-vehicle{
+    border: 2px solid blue;
+    overflow-y: auto;
+    height: 65%;
+    background: #a9bee8;
+    color: white;
+}
+
+.buttons{
+    float: bottom;
+}

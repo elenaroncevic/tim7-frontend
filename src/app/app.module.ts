@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 
 
@@ -59,7 +60,8 @@ import { ProveraKarteComponent } from './provera-karte/provera-karte.component';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    SelectDropDownModule
   ],
   providers: [],
   bootstrap: [AppComponent]
