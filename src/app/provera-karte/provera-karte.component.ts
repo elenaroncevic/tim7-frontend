@@ -16,6 +16,7 @@ export class ProveraKarteComponent implements OnInit {
   izabranaLinija:string;
   kodKarte:FormControl;
   proveraKarteForm:FormGroup;
+  odgovor;
 
   constructor(private linijeService:LinijeService, private checkKartaService:CheckKartaService) {
     this.createFormControls();
@@ -53,17 +54,22 @@ export class ProveraKarteComponent implements OnInit {
   }
 
   proveriKartu(){  
-    if (this.proveraKarteForm.valid) {   
-      this.checkKartaService.proveriKartu(this.tipPrevoza, this.izabranaLinija, this.kodKarte.value);
-        
+    if (this.proveraKarteForm.valid) {
+      this.checkKartaService.proveriKartu(this.tipPrevoza, this.izabranaLinija, this.kodKarte.value)
+        .then((response) => {
+            console.log(response);
+            this.ispisiOdgovor(response)
+        }).catch((error) => {
 
-      this.proveraKarteForm.reset();
-    }else{
-      this.kodKarte.markAsTouched();
+          console.log(error);
+        });
+  
     }
   }
 
-  resetKodPolje(){
-    this.proveraKarteForm.reset();
+  ispisiOdgovor(response){
+    this.odgovor = response;
+    console.log("znak zivota");
+    console.log(this.odgovor);
   }
 }

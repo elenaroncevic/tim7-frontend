@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'adminLinije', component: AdminLinijeComponent},
   { path: 'adminStanice', component: AdminStaniceComponent},
   { path: 'adminVozila', component: AdminVozilaComponent},
-  { path: 'proveraKarte', component: ProveraKarteComponent}
+  { path: 'proveraKarte', component: ProveraKarteComponent},
 ];
 
 @NgModule({

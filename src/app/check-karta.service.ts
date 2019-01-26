@@ -9,22 +9,14 @@ export class CheckKartaService {
   constructor(private httpClient:HttpClient) { }
 
   proveriKartu(tipVozila:string, nazivLinije:string, kod:string):any {
-  this.httpClient.post("http://localhost:8080/karte/proveriKartu/"+tipVozila+'/'+nazivLinije+'/'+kod, { headers: { 'X-Auth-Token': localStorage.getItem('X-Auth-Token') } })
-  .subscribe(
-    data => {
-        alert("Karta je vazeca.");
-        console.log(data);
-    },
-    headers => {
+      var token=localStorage.getItem('X-Auth-Token');
+      console.log(token);
+      const httpOptions = {
+        headers: new HttpHeaders({'X-Auth-Token':token})
+      };
+  return this.httpClient.post("http://localhost:8080/karte/proveriKartu/"+tipVozila+'/'+nazivLinije+'/'+kod, httpOptions).toPromise();
+  
 
-        if (headers.status==400){
-            alert("Karta nije vazeca.");
-
-        }else{
-        console.error("Greska na serveru.");
-        }
-    }
-);
 }
 
 }
