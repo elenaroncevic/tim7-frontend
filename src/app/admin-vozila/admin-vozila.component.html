@@ -1,3 +1,45 @@
-<p>
-  admin-vozila works!
-</p>
+<div id="all-vehicles">
+    <p>{{title_vehicles}}</p>
+
+    <button *ngIf="!loadingVehicles" id="add-button" [disabled]="loadingVehicle" (click)="newVehicle()">+Dodaj vozilo</button>
+
+    <table *ngIf="!loadingVehicles">
+        <tr>
+            <th>Registracija</th>
+            <th>Tip vozila</th>
+            <th>Trenutno u liniji</th>
+            <th>Promijeni podatke</th>
+        </tr>
+
+        <tr *ngFor="let vehicle of vehicles">
+            <td>{{vehicle.registration}}</td>
+            <td>{{vehicle.type}}</td>
+            <td>{{vehicle.lineName}}</td>
+            <td><button [disabled]="loadingVehicle" (click)="openVehicleInfo(vehicle)">Uredi</button></td>
+        </tr>
+
+
+    </table>
+
+</div>
+
+<div id="current-vehicle">
+    <p *ngIf="!showVehicle">{{title_vehicle}}</p>
+    <div *ngIf="showVehicle">
+        <p>Registracija: 
+        <input [(ngModel)]="current_vehicle.registration"></p>
+        
+        <ngx-select-dropdown [config]="configTypes" [options]="allTypes" [(ngModel)]="selectedType">
+        </ngx-select-dropdown>
+
+        <ngx-select-dropdown [config]="config" [options]="allLines" [(ngModel)]="selectedLine">
+        </ngx-select-dropdown>
+    </div>
+
+    <div class="buttons" *ngIf="showVehicle">
+        <button (click)="saveChanges()">Sacuvaj</button>
+        <button (click)="deleteVehicle()">Obrisi</button>
+    </div>
+
+    <p style="color: red" *ngIf="showVehicle">Registracija i tip vozila moraju biti popunjeni!</p> 
+</div>
