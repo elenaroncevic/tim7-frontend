@@ -46,16 +46,21 @@ export class FormCenovnikComponent implements OnInit {
   loading : boolean;
 
   constructor(private cenovnikService : CenovnikService) {
-    this.createFormControls();
-    this.createForms();
+    if(localStorage.getItem('X-Auth-Token')){
+      this.createFormControls();
+      this.createForms();
+    }
     
   }
 
   ngOnInit() {
     this.loading = true;
+      if(localStorage.getItem('X-Auth-Token')){
+
     this.showStavka = false;
 
     this.getData();
+    }
   }
 
   getData(){
@@ -69,8 +74,7 @@ export class FormCenovnikComponent implements OnInit {
           this.sveZaStavku.zones.push(zona);
         }
       }
-            this.loading = false;
-
+      this.loading = false;
      }).catch((error)=>{
         console.log(error);
      });

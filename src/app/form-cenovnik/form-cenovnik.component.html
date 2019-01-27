@@ -1,166 +1,167 @@
+<div *ngIf="!loading">
+  <button class="btn blue" (click)="enableShowStavka()">Dodaj stavku</button>
 
-<button class="btn blue" (click)="enableShowStavka()">Dodaj stavku</button>
-
-<form novalidate [formGroup]="stavkaForm" (ngSubmit)="addStavka(f)" *ngIf="showStavka && !loading" id="stavka"  #f="ngForm">
-  <hr />
-  <table>
-    <tr>
-      <td>
-        <h6 class="left">Vrsta prevoza: </h6>
-      </td>
-      <td>
-        <div class="form-group"
-             [ngClass]="{'has-danger': prevozControl?.invalid && ( prevozControl?.touched || prevozControl?.dirty),
+  <form novalidate [formGroup]="stavkaForm" (ngSubmit)="addStavka(f)" *ngIf="showStavka && !loading" id="stavka" #f="ngForm">
+    <hr />
+    <table>
+      <tr>
+        <td>
+          <h6 class="left">Vrsta prevoza: </h6>
+        </td>
+        <td>
+          <div class="form-group"
+               [ngClass]="{'has-danger': prevozControl?.invalid && ( prevozControl?.touched || prevozControl?.dirty),
                      'has-success': prevozControl?.valid && ( prevozControl?.touched || prevozControl?.dirty)}">
-          <select class="form-control" formControlName="prevozControl" required>
-            <option *ngFor="let vrsta of sveZaStavku?.vrstePrevoza" [value]="vrsta">{{vrsta}}</option>
-          </select>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="left">
-        <h6>Cena:</h6>
-      </td>
-      <td>
-        <div class="form-group"
-             [ngClass]="{'has-danger': cenaControl?.invalid && ( cenaControl?.touched || cenaControl?.dirty),
+            <select class="form-control" formControlName="prevozControl" required>
+              <option *ngFor="let vrsta of sveZaStavku?.vrstePrevoza" [value]="vrsta">{{vrsta}}</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="left">
+          <h6>Cena:</h6>
+        </td>
+        <td>
+          <div class="form-group"
+               [ngClass]="{'has-danger': cenaControl?.invalid && ( cenaControl?.touched || cenaControl?.dirty),
                              'has-success': cenaControl?.valid && ( cenaControl?.touched || cenaControl?.dirty)}">
-          <input type="number" min="0" step="50" class="form-control" formControlName="cenaControl" placeholder="Cena" />
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="left">
-        <h6>Tip karte: </h6>
-      </td>
-      <td>
-        <div class="form-group"
-             [ngClass]="{'has-danger': tipControl?.invalid && ( tipControl?.touched || tipControl?.dirty),
+            <input type="number" min="0" step="50" class="form-control" formControlName="cenaControl" placeholder="Cena" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="left">
+          <h6>Tip karte: </h6>
+        </td>
+        <td>
+          <div class="form-group"
+               [ngClass]="{'has-danger': tipControl?.invalid && ( tipControl?.touched || tipControl?.dirty),
                      'has-success': tipControl?.valid && ( tipControl?.touched || tipControl?.dirty)}">
-          <select class="form-control" formControlName="tipControl" required>
-            <option *ngFor="let tip of sveZaStavku.tipoviKarata" [value]="tip">{{tip}}</option>
-          </select>
-        </div>
-      </td>
-    </tr>
-    <tr *ngIf="tipControl?.value && tipControl?.value=='DNEVNA'">
-      <td class="left">
-        <h6>Linija:</h6>
-      </td>
-      <td>
-        <div class="form-group"
-             [ngClass]="{'has-danger': linijaControl?.invalid && ( linijaControl?.touched || linijaControl?.dirty),
+            <select class="form-control" formControlName="tipControl" required>
+              <option *ngFor="let tip of sveZaStavku.tipoviKarata" [value]="tip">{{tip}}</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="tipControl?.value && tipControl?.value=='DNEVNA'">
+        <td class="left">
+          <h6>Linija:</h6>
+        </td>
+        <td>
+          <div class="form-group"
+               [ngClass]="{'has-danger': linijaControl?.invalid && ( linijaControl?.touched || linijaControl?.dirty),
                      'has-success': linijaControl?.valid && ( linijaControl?.touched || linijaControl?.dirty)}">
-          <select class="form-control" formControlName="linijaControl" placeholder="Linija" >
-            <option *ngFor="let linija of sveZaStavku.linije" [ngValue]="linija">{{linija.name}}</option>
-          </select>
-        </div>
-      </td>
-    </tr>
-    <tr *ngIf="tipControl?.value && tipControl?.value!='DNEVNA'">
-      <td class="left">
-        <h6>Zona: </h6>
-      </td>
-      <td>
-        <div class="form-group"
-             [ngClass]="{'has-danger': zonaControl?.invalid && ( zonaControl?.touched || zonaControl?.dirty),
+            <select class="form-control" formControlName="linijaControl" placeholder="Linija">
+              <option *ngFor="let linija of sveZaStavku.linije" [ngValue]="linija">{{linija.name}}</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="tipControl?.value && tipControl?.value!='DNEVNA'">
+        <td class="left">
+          <h6>Zona: </h6>
+        </td>
+        <td>
+          <div class="form-group"
+               [ngClass]="{'has-danger': zonaControl?.invalid && ( zonaControl?.touched || zonaControl?.dirty),
                      'has-success': zonaControl?.valid && ( zonaControl?.touched || zonaControl?.dirty)}">
-          <select class="form-control" formControlName="zonaControl" >
-            <option *ngFor="let zona of sveZaStavku.zones" [ngValue]="zona">{{zona.name}}</option>
-          </select>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <button type="submit" class="btn green">Dodaj</button>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <div class="form-control-feedback" *ngIf="cenaControl?.errors && (cenaControl?.dirty || cenaControl?.touched) ">
-          <p *ngIf="cenaControl?.errors.required">Cena je obavezna</p>
-        </div>
-        <div class="form-control-feedback" *ngIf=" tipControl?.errors && (tipControl?.dirty || tipControl?.touched) ">
-          <p *ngIf="tipControl?.errors.required">Tip je obavezan</p>
-        </div>
-        <div class="form-control-feedback" *ngIf="prevozControl?.errors && (prevozControl?.dirty || prevozControl?.touched) ">
-          <p *ngIf="prevozControl?.errors.required">Prevoz je obavezan</p>
-        </div>
-      </td>
-    </tr>
-  </table>
-  <hr />
-</form>
+            <select class="form-control" formControlName="zonaControl">
+              <option *ngFor="let zona of sveZaStavku.zones" [ngValue]="zona">{{zona.name}}</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button type="submit" class="btn green">Dodaj</button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="form-control-feedback" *ngIf="cenaControl?.errors && (cenaControl?.dirty || cenaControl?.touched) ">
+            <p *ngIf="cenaControl?.errors.required">Cena je obavezna</p>
+          </div>
+          <div class="form-control-feedback" *ngIf=" tipControl?.errors && (tipControl?.dirty || tipControl?.touched) ">
+            <p *ngIf="tipControl?.errors.required">Tip je obavezan</p>
+          </div>
+          <div class="form-control-feedback" *ngIf="prevozControl?.errors && (prevozControl?.dirty || prevozControl?.touched) ">
+            <p *ngIf="prevozControl?.errors.required">Prevoz je obavezan</p>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <hr />
+  </form>
 
-<form novalidate [formGroup]="cenovnikForm" (ngSubmit)="addCenovnik(cf)"  #cf="ngForm">
-  <h6>Datum pocetka:</h6>
-  <div class="form-group"
-       [ngClass]="{'has-danger': datumControl?.invalid && ( datumControl?.touched || datumControl?.dirty),
+  <form novalidate [formGroup]="cenovnikForm" (ngSubmit)="addCenovnik(cf)" #cf="ngForm">
+    <h6>Datum pocetka:</h6>
+    <div class="form-group"
+         [ngClass]="{'has-danger': datumControl?.invalid && ( datumControl?.touched || datumControl?.dirty),
                    'has-success': datumControl?.valid && ( datumControl?.touched || datumControl?.dirty)}">
-    <input type="date"
-           class="form-control"
-           formControlName="datumControl"
-           placeholder="Datum pocetka vazenja"
-           required>
-    <div class="form-control-feedback" *ngIf="datumControl.errors && (datumControl.dirty || datumControl.touched)">
-      <p *ngIf="datumControl.errors.required">Datum pocetka je obavezan</p>
-      <p *ngIf="datumControl.errors.validDate">Datum mora biti bar dva dana od sad</p>
+      <input type="date"
+             class="form-control"
+             formControlName="datumControl"
+             placeholder="Datum pocetka vazenja"
+             required>
+      <div class="form-control-feedback" *ngIf="datumControl.errors && (datumControl.dirty || datumControl.touched)">
+        <p *ngIf="datumControl.errors.required">Datum pocetka je obavezan</p>
+        <p *ngIf="datumControl.errors.validDate">Datum mora biti bar dva dana od sad</p>
+      </div>
     </div>
-  </div>
-  <h6>Popust za djake:</h6>
-  <div class="form-group"
-       [ngClass]="{'has-danger': popustDjakControl?.invalid && ( popustDjakControl?.touched || popustDjakControl?.dirty),
+    <h6>Popust za djake:</h6>
+    <div class="form-group"
+         [ngClass]="{'has-danger': popustDjakControl?.invalid && ( popustDjakControl?.touched || popustDjakControl?.dirty),
                    'has-success': popustDjakControl?.valid && ( popustDjakControl?.touched || popustDjakControl?.dirty)}">
-    <input type="number"
-           min="0" max="100" step="5"
-           class="form-control"
-           formControlName="popustDjakControl"
-           required>
-    <div class="form-control-feedback" *ngIf="popustDjakControl?.errors && (popustDjakControl?.dirty || popustDjakControl?.touched)">
-      <p *ngIf="popustDjakControl?.errors.required">Popust za djake je obavezan</p>
+      <input type="number"
+             min="0" max="100" step="5"
+             class="form-control"
+             formControlName="popustDjakControl"
+             required>
+      <div class="form-control-feedback" *ngIf="popustDjakControl?.errors && (popustDjakControl?.dirty || popustDjakControl?.touched)">
+        <p *ngIf="popustDjakControl?.errors.required">Popust za djake je obavezan</p>
+      </div>
     </div>
-  </div>
-  <h6>Popust za studente:</h6>
-  <div class="form-group"
-       [ngClass]="{'has-danger': popustStudentControl?.invalid && ( popustStudentControl?.touched || popustStudentControl?.dirty),
+    <h6>Popust za studente:</h6>
+    <div class="form-group"
+         [ngClass]="{'has-danger': popustStudentControl?.invalid && ( popustStudentControl?.touched || popustStudentControl?.dirty),
                    'has-success': popustStudentControl?.valid && ( popustStudentControl?.touched || popustStudentControl?.dirty)}">
-    <input type="number"
-           min="0" max="100" step="5"
-           class="form-control"
-           formControlName="popustStudentControl"
-           required>
-    <div class="form-control-feedback" *ngIf="popustStudentControl?.errors && (popustStudentControl?.dirty || popustStudentControl?.touched)">
-      <p *ngIf="popustStudentControl?.errors.required">Popust za studente je obavezan</p>
-    </div>
-  </div><h6>Popust za penzionere:</h6>
-  <div class="form-group"
-       [ngClass]="{'has-danger': popustPenzionerControl?.invalid && ( popustPenzionerControl?.touched || popustPenzionerControl?.dirty),
+      <input type="number"
+             min="0" max="100" step="5"
+             class="form-control"
+             formControlName="popustStudentControl"
+             required>
+      <div class="form-control-feedback" *ngIf="popustStudentControl?.errors && (popustStudentControl?.dirty || popustStudentControl?.touched)">
+        <p *ngIf="popustStudentControl?.errors.required">Popust za studente je obavezan</p>
+      </div>
+    </div><h6>Popust za penzionere:</h6>
+    <div class="form-group"
+         [ngClass]="{'has-danger': popustPenzionerControl?.invalid && ( popustPenzionerControl?.touched || popustPenzionerControl?.dirty),
                    'has-success': popustPenzionerControl?.valid && ( popustPenzionerControl?.touched || popustPenzionerControl?.dirty)}">
-    <input type="number"
-           min="0" max="100" step="5"
-           class="form-control"
-           formControlName="popustPenzionerControl"
-           required>
-    <div class="form-control-feedback" *ngIf="popustPenzionerControl?.errors && (popustPenzionerControl?.dirty || popustPenzionerControl?.touched)">
-      <p *ngIf="popustPenzionerControl?.errors.required">Popust za penzionere je obavezan</p>
-    </div>
-  </div><h6>Popust za nezaposlene:</h6>
-  <div class="form-group"
-       [ngClass]="{'has-danger': popustNezaposlenControl?.invalid && ( popustNezaposlenControl?.touched || popustNezaposlenControl?.dirty),
+      <input type="number"
+             min="0" max="100" step="5"
+             class="form-control"
+             formControlName="popustPenzionerControl"
+             required>
+      <div class="form-control-feedback" *ngIf="popustPenzionerControl?.errors && (popustPenzionerControl?.dirty || popustPenzionerControl?.touched)">
+        <p *ngIf="popustPenzionerControl?.errors.required">Popust za penzionere je obavezan</p>
+      </div>
+    </div><h6>Popust za nezaposlene:</h6>
+    <div class="form-group"
+         [ngClass]="{'has-danger': popustNezaposlenControl?.invalid && ( popustNezaposlenControl?.touched || popustNezaposlenControl?.dirty),
                    'has-success': popustNezaposlenControl?.valid && ( popustNezaposlenControl?.touched || popustNezaposlenControl?.dirty)}">
-    <input type="number"
-           min="0" max="100" step="5"
-           class="form-control"
-           formControlName="popustNezaposlenControl"
-           required>
-    <div class="form-control-feedback" *ngIf="popustNezaposlenControl?.errors && (popustNezaposlenControl?.dirty || popustNezaposlenControl?.touched)">
-      <p *ngIf="popustNezaposlenControl?.errors.required">Popust za nezaposlene je obavezan</p>
+      <input type="number"
+             min="0" max="100" step="5"
+             class="form-control"
+             formControlName="popustNezaposlenControl"
+             required>
+      <div class="form-control-feedback" *ngIf="popustNezaposlenControl?.errors && (popustNezaposlenControl?.dirty || popustNezaposlenControl?.touched)">
+        <p *ngIf="popustNezaposlenControl?.errors.required">Popust za nezaposlene je obavezan</p>
+      </div>
     </div>
-  </div>
-  <button type="submit" class="btn green">Dodaj Cenovnik</button>
-</form>
+    <button type="submit" class="btn green">Dodaj Cenovnik</button>
+  </form>
 
 
 
+</div>
