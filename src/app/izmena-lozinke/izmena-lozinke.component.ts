@@ -54,13 +54,22 @@ export class IzmenaLozinkeComponent implements OnInit {
       this.korisnik.lozinka2 = this.nova2.value;
       this.korisnik.trenutnaLozinka = this.trenutna.value;
 
-      this.izmenaLozinkeService.izmenaLozinke(this.korisnik);
+      this.izmenaLozinkeService.izmenaLozinke(this.korisnik);      
     }
+    this.lozinkaForm.reset();
   }
 
   otkazi() {
     this.lozinkaForm.reset();
-    this.router.navigate(['/profilKorisnik']);
+    if (this.user.uloga === "KORISNIK") {
+      this.router.navigate(['/profilKorisnik']);
+  } else if (this.user.uloga === "ADMINISTRATOR") {                    
+      this.router.navigate(['/profilAdmin']);
+  } else if (this.user.uloga === "VERIFIKATOR") {
+      this.router.navigate(['/profilVerifikator']);
+  } else {
+      this.router.navigate(['/profilKondukter']);
+  }
   }
 
   get user(): any {

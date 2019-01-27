@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GetLinijeService } from '../get-linije.service';
-import { GetZoneService } from '../get-zone.service';
-import { Ruta } from '../model/Ruta';
+import { GetLinijeZoneService } from '../get-linije-zone.service';
+
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Karta } from '../model/Karta';
 import { KupovinaKarteService } from '../kupovina-karte.service';
@@ -40,7 +39,7 @@ export class KupovinaKarteComponent implements OnInit {
   tipRute = null;
   tipoviRute: Array<Object> = [];
 
-  constructor(private linijeServis: GetLinijeService, private zoneServis: GetZoneService, private kupovinaKarteServis: KupovinaKarteService, private router: Router) {
+  constructor(private zoneServis: GetLinijeZoneService, private kupovinaKarteServis: KupovinaKarteService, private router: Router) {
     this.createFormControls();
     this.createForm();
   }
@@ -68,28 +67,49 @@ export class KupovinaKarteComponent implements OnInit {
     }
     this.ruta = null;
     this.rutaControl.reset();
-    if (this.tipKarte == "DNEVNA") {
-      this.linijeServis.getLinije().subscribe(data => {
-        data.linijeZone.forEach(element => {
-          this.tipoviRute.push({ name: element });
-        });
-        this.tipRute = "liniju";
-      })
-    } else {
-      this.zoneServis.getZone().subscribe(data => {
-        data.linijeZone.forEach(element => {
-          this.tipoviRute.push({ name: element });
-        });
-        this.tipRute = "zonu";
-      })
+
+    if (this.kartaControl.dirty && this.voziloControl.dirty) {
+
+      if (this.tipKarte == "DNEVNA") {
+        this.zoneServis.getZone().subscribe(data => {
+          data.stavkeCenovnika.forEach(element => {
+            if(element.tipKarte == this.tipKarte && element.vrstaPrevoza == this. tipVozila){
+              if(this.unikat(this.tipoviRute, element.nazivLinije)){
+                this.tipoviRute.push({ name: element.nazivLinije });
+              }
+            }
+          });
+          this.tipRute = "liniju";
+        })
+      } else {
+        this.zoneServis.getZone().subscribe(data => {
+          data.stavkeCenovnika.forEach(element => {
+            if(element.tipKarte == this.tipKarte && element.vrstaPrevoza == this. tipVozila){
+              if(this.unikat(this.tipoviRute, element.nazivZone)){
+                this.tipoviRute.push({ name: element.nazivZone });
+              }
+            }
+          });
+          this.tipRute = "zonu";
+        })
+      }
     }
   }
 
+  unikat(lista,element){
+    var retval = true;
+    lista.forEach(el => {
+      if(el.name == element){
+        retval = false;
+      }
+    });
+    return retval;
+  }
 
   kupiKartu() {
     if (this.kupovinaKarteForma.valid) {
       var ulogovan = JSON.parse(localStorage.getItem('ulogovan')) as PrijavljenKorisnik;
-      if (ulogovan.status == null) {
+      if (this.tipKarte != "DNEVNA" && ulogovan.status == null) {
         alert("Nije potvrdjen vas status. Proverite da li ste prilozili potvrdu.")
       } else {
         this.karta = new Karta();

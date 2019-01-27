@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 
 
@@ -20,6 +22,14 @@ import { KupovinaKarteComponent } from './kupovina-karte/kupovina-karte.componen
 import { UredjivanjeProfilaComponent } from './uredjivanje-profila/uredjivanje-profila.component';
 import { FormCenovnikComponent } from './form-cenovnik/form-cenovnik.component';
 import { IzmenaLozinkeComponent } from './izmena-lozinke/izmena-lozinke.component';
+import { MrezaLinijaComponent } from './mreza-linija/mreza-linija.component';
+import { MapComponent } from './map/map.component';
+import { AdminZoneComponent } from './admin-zone/admin-zone.component';
+import { AdminStaniceComponent } from './admin-stanice/admin-stanice.component';
+import { AdminLinijeComponent } from './admin-linije/admin-linije.component';
+import { AdminVozilaComponent } from './admin-vozila/admin-vozila.component';
+import { ProveraKarteComponent } from './provera-karte/provera-karte.component';
+import { PotvrdaZahtevaComponent } from './potvrda-zahteva/potvrda-zahteva.component';
 
 
 @NgModule({
@@ -35,9 +45,15 @@ import { IzmenaLozinkeComponent } from './izmena-lozinke/izmena-lozinke.componen
     KupovinaKarteComponent,
     UredjivanjeProfilaComponent,
     IzmenaLozinkeComponent,
- 
-    
-    FormCenovnikComponent
+    MrezaLinijaComponent,
+    FormCenovnikComponent,
+    MapComponent,
+    AdminZoneComponent,
+    AdminStaniceComponent,
+    AdminLinijeComponent,
+    AdminVozilaComponent,
+    ProveraKarteComponent,
+    PotvrdaZahtevaComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +61,9 @@ import { IzmenaLozinkeComponent } from './izmena-lozinke/izmena-lozinke.componen
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    SelectDropDownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

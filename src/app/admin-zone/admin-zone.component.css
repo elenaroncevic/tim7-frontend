@@ -1,0 +1,48 @@
+
+button{
+    border: none;
+    background: #008CBA ;
+    margin: 5px;
+    color: white;
+}
+
+button:hover{
+    background: grey;
+}
+
+button:disabled{
+    color: black;
+    cursor: not-allowed;
+}
+
+#dodaj_dugme{
+    background: red;
+    color: darkblue;
+    float: right; 
+}
+#dodaj_dugme:hover{
+    background: grey;
+}
+
+#nazivi_zona{
+    border: 2px solid blue;
+    overflow-y: auto;
+    height: 35%;
+    background: #000080;
+}
+
+#nazivi_zona p{
+    color: white;
+}
+
+#current-zone{
+    border: 2px solid blue;
+    overflow-y: auto;
+    height: 65%;
+    background: #a9bee8;
+    color: white;
+}
+
+.buttons{
+    float: bottom;
+}

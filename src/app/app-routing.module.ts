@@ -13,7 +13,14 @@ import { FormCenovnikComponent} from './form-cenovnik/form-cenovnik.component';
 import { KupovinaKarteComponent} from './kupovina-karte/kupovina-karte.component';
 import { UredjivanjeProfilaComponent} from './uredjivanje-profila/uredjivanje-profila.component';
 import { IzmenaLozinkeComponent} from './izmena-lozinke/izmena-lozinke.component';
-
+import { MrezaLinijaComponent } from './mreza-linija/mreza-linija.component';
+import { MapComponent } from './map/map.component';
+import { AdminZoneComponent } from './admin-zone/admin-zone.component';
+import { AdminStaniceComponent } from './admin-stanice/admin-stanice.component';
+import { AdminLinijeComponent } from './admin-linije/admin-linije.component';
+import { AdminVozilaComponent } from './admin-vozila/admin-vozila.component';
+import { ProveraKarteComponent } from './provera-karte/provera-karte.component';
+import { PotvrdaZahtevaComponent } from './potvrda-zahteva/potvrda-zahteva.component';
 
 const routes: Routes = [
   { path: 'cenovnik', component: CenovnikComponent },
@@ -27,7 +34,14 @@ const routes: Routes = [
   { path: 'uredjivanjeProfila', component: UredjivanjeProfilaComponent },
   { path: 'izmenaLozinke', component: IzmenaLozinkeComponent },
 
-  { path: 'formCenovnik', component: FormCenovnikComponent}
+  { path: 'formCenovnik', component: FormCenovnikComponent},
+  { path: 'mrezaLinija', component: MrezaLinijaComponent},
+  { path: 'adminZone', component: AdminZoneComponent},
+  { path: 'adminLinije', component: AdminLinijeComponent},
+  { path: 'adminStanice', component: AdminStaniceComponent},
+  { path: 'adminVozila', component: AdminVozilaComponent},
+  { path: 'proveraKarte', component: ProveraKarteComponent},
+  { path: 'potvrdaZahteva', component: PotvrdaZahtevaComponent},
 ];
 
 @NgModule({

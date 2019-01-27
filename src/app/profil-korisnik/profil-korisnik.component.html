@@ -19,16 +19,19 @@
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
+              <th scope="col">Kod</th>
             <th scope="col">Tip karte</th>
             <th scope="col">Vrsta prevoza</th>
             <th scope="col">Zona/Linija</th>
             <th scope="col">Datum isteka</th>
             <th scope="col">Cena</th>
             <th scope="col">Upotrebljena(dnevna)</th>
+            <th scope="col">Odobrena(visednevna)</th>
           </tr>
         </thead>
         <tbody>
           <tr scope="col" *ngFor="let karta of kupljeneKarte">
+              <td>{{karta.kod}}</td>
             <td>{{karta.tipKarte}}</td>
             <td>{{karta.tipPrevoza}}</td>
             <td>{{karta.linijaZona}}</td>
@@ -37,6 +40,10 @@
             <td *ngIf="karta.tipKarte != 'DNEVNA'">-</td>
             <td *ngIf="karta.tipKarte == 'DNEVNA' && karta.cekiranaDnevnaKarta == false">Neupotrebljena</td>
             <td *ngIf="karta.tipKarte == 'DNEVNA' && karta.cekiranaDnevnaKarta != false">Upotrebljena</td>
+            <td *ngIf="karta.odobrenaKupovina == false ">Odbijena</td>
+            <td *ngIf="karta.odobrenaKupovina == true ">Odobrena</td>
+            <td *ngIf="karta.odobrenaKupovina == null && karta.tipKarte == 'DNEVNA'">-</td>
+            <td *ngIf="karta.odobrenaKupovina == null && karta.tipKarte !='DNEVNA' ">Na cekanju</td>
 
           </tr>
         </tbody>

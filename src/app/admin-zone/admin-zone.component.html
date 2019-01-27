@@ -1,0 +1,24 @@
+<div id="nazivi_zona">
+    <p *ngIf="!loadingZones">{{title}}<button id="dodaj_dugme" [disabled]="loadingZone" (click)="newZone()">+ Dodaj zonu</button></p>
+    <button *ngFor="let zone of zones" (click)="openZoneInfo(zone)" [disabled]="loadingZone">{{zone.name}}</button>
+</div>
+
+<div id="current-zone">
+    <p *ngIf="!showZone">{{title_zone}}</p>
+    <div *ngIf="showZone">
+        <p>Naziv: 
+        <input [(ngModel)]="currentZone.name"></p>
+            
+        <ng-multiselect-dropdown [placeholder]="'izaberi linije za ovu zonu'" [data]="allLines" 
+        [(ngModel)]="lines" [settings]="dropdownSettings" (onDeSelect)="lineRemoved($event)" (onSelect)="lineAdded($event)">
+        </ng-multiselect-dropdown>
+
+    </div>
+
+    <div class="buttons" *ngIf="showZone">
+        <button (click)="saveChanges()">Sacuvaj</button>
+        <button (click)="deleteZone()">Obrisi</button>
+    </div>
+
+    <p style="color: red" *ngIf="showZone">Naziv zone ne smije ostati prazan!</p>
+</div>

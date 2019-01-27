@@ -1,11 +1,13 @@
 
     
     export class Karta {
+        kod : String;
         datumIsteka: Date;
         cena: number;
         tipKarte : String;
         tipPrevoza : String;
         linijaZona : String;
         statusKorisnika:string;
-        cekiranaDnevnaKarta : boolean;
+        cekiranaDnevnaKarta : Boolean;
+        odobrenaKupovina: Boolean;
     }

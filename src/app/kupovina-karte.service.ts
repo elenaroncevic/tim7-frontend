@@ -18,8 +18,13 @@ export class KupovinaKarteService {
                     this.router.navigate(['/profilKorisnik']);
                 },
                 headers => {
-                    console.error("Greska na serveru.");
 
+                    if (headers.status==304){
+                        alert("Karta koju ste odabrali je vec kupljena.");
+
+                    }else{
+                    console.error("Greska na serveru.");
+                    }
                 }
             );
 

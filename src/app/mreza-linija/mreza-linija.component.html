@@ -1,0 +1,13 @@
+
+<div id="nazivi_zona">
+    <p>{{title_zone}}</p>
+    <button *ngFor="let zone of zones" (click)="getLinije(zone)" [disabled]="loadingLinije">{{zone.name}}</button>
+</div>
+
+<div id="nazivi_mreza">
+    <p>{{name_of_zone}}</p>
+    <button *ngFor="let line of linije" (click)="showStanice(line)">{{line.name}}</button>
+</div>
+
+    
+<app-map-component [linija]="izabranaLinija"></app-map-component>
