@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { LocalStorage } from '@ngx-pwa/local-storage';
-import { Linija, Zona} from './model/Linija'
+import { Linija, Zona, SveZaStavku} from './model/Linija'
 
 @Injectable({
   providedIn: 'root'
@@ -17,23 +17,24 @@ export class CenovnikService {
      return this.http.get<Cenovnik>(this.cenovnikUrl+"/trenutni").toPromise();     
   }
 
-  getLinije(){
+  getSveZaStavku(){
     var token = localStorage.getItem('X-Auth-Token');
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     httpOptions.headers = httpOptions.headers.append( 'X-Auth-Token' , token);
-    return this.http.get<Linija[]>(this.linijaUrl+"/zaCenovnik", httpOptions).toPromise();
+    return this.http.get<SveZaStavku>(this.cenovnikUrl+"/zaCenovnik", httpOptions).toPromise();
   }
 
   addCenovnik(cenovnik : Cenovnik){
     var token = localStorage.getItem('X-Auth-Token');
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
     httpOptions.headers = httpOptions.headers.append( 'X-Auth-Token' , token);
+
     console.log(httpOptions);
-    return this.http.post<Cenovnik>(this.cenovnikUrl, cenovnik, httpOptions ).toPromise();
+    return this.http.post<string>(this.cenovnikUrl, cenovnik, {...httpOptions, responseType: 'text' as 'json'} ).toPromise();
   }
 
   constructor(private http: HttpClient, protected localStorage: LocalStorage ) { }

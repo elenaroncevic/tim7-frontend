@@ -13,7 +13,6 @@ import {Cenovnik} from '../model/Cenovnik';
 export class CenovnikComponent implements OnInit {
 
   cenovnik : Cenovnik;
-  newCenovnik : Cenovnik = new Cenovnik();
   loading = true;
 
   constructor(private cenovnikService : CenovnikService) { }
@@ -39,16 +38,6 @@ export class CenovnikComponent implements OnInit {
      });
   }
 
-  addCenovnik(){
-    this.loading = true;
-    this.cenovnikService.addCenovnik(this.cenovnik)
-    .then((response) => {
-      this.cenovnik = response;
-      console.log(response);
-      this.loading = false;
-    }).catch((error) => {
-      console.log(error)
-    });
-  }
+  
 
 }
