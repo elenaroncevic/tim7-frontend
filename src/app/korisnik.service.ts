@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { Login } from './model/Login';
-import { Token } from './model/Token';
 import { Korisnik } from './model/Korisnik';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PrijavljenKorisnik } from './model/PrijavljenKorisnik';
@@ -11,7 +10,7 @@ import { PrijavljenKorisnik } from './model/PrijavljenKorisnik';
 })
 export class KorisnikService {
 
-    token: Token;
+    ulogovan: PrijavljenKorisnik;
 
     constructor(private httpClient: HttpClient, private router: Router) { }
 
@@ -20,9 +19,10 @@ export class KorisnikService {
         this.httpClient.post("http://localhost:8080/osoba/login", korisnik)
             .subscribe(
                 data => {
-                    this.token = data as Token;
-                    localStorage.setItem('X-Auth-Token', this.token.token);
-                    this.getUlogovanKorisnik();
+                    this.ulogovan = data as PrijavljenKorisnik;
+                    localStorage.setItem('X-Auth-Token', this.ulogovan.token);
+                    localStorage.setItem("ulogovan", JSON.stringify(this.ulogovan));
+                     this.redirectProfil()
                 },
                 headers => {
                     if (headers.status == 400) {
@@ -91,21 +91,6 @@ export class KorisnikService {
                 }
             );
 
-    }
-
-    getUlogovanKorisnik() {
-        this.httpClient.get("http://localhost:8080/osoba/prijavljenKorisnik", { headers: { 'X-Auth-Token': localStorage.getItem('X-Auth-Token') } }).subscribe(
-            data => {
-                var tipKorisnika = data as PrijavljenKorisnik;
-                localStorage.setItem("ulogovan", JSON.stringify(tipKorisnika));
-                this.redirectProfil()
-            },
-            headers => {
-                if (headers.status == 400) {
-                    alert("Uneli ste neispravne kredencijale.")
-                }
-            }
-        );
     }
 
     redirectProfil(){
