@@ -28,7 +28,7 @@ export class ProveraKarteComponent implements OnInit {
   ngOnInit() {
     this.getSveLinije();
     this.tipPrevoza="AUTOBUS";
-    
+    this.odgovor=null;
   }
 
 
@@ -71,6 +71,7 @@ export class ProveraKarteComponent implements OnInit {
 
   resetKodPolje(){
     this.kodKarte.setValue("");
+    this.kodKarte.untouched;
   }
 
 }
