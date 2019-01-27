@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LinijeService } from '../linije.service';
 import { Linija, Zona } from '../model/Linija';
+import { Odgovor } from '../model/Odgovor';
 import { CheckKartaService } from '../check-karta.service';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
@@ -16,7 +17,7 @@ export class ProveraKarteComponent implements OnInit {
   izabranaLinija:string;
   kodKarte:FormControl;
   proveraKarteForm:FormGroup;
-  odgovor;
+  odgovor:Odgovor;
 
   constructor(private linijeService:LinijeService, private checkKartaService:CheckKartaService) {
     this.createFormControls();
@@ -27,7 +28,7 @@ export class ProveraKarteComponent implements OnInit {
   ngOnInit() {
     this.getSveLinije();
     this.tipPrevoza="AUTOBUS";
-    
+    this.odgovor=null;
   }
 
 
@@ -58,18 +59,19 @@ export class ProveraKarteComponent implements OnInit {
       this.checkKartaService.proveriKartu(this.tipPrevoza, this.izabranaLinija, this.kodKarte.value)
         .then((response) => {
             console.log(response);
-            this.ispisiOdgovor(response)
+            this.odgovor=response;
+            alert(this.odgovor.odgovor);
         }).catch((error) => {
-
-          console.log(error);
+            console.log(error);
+            alert("Karta nije vazeca");
         });
   
     }
   }
 
-  ispisiOdgovor(response){
-    this.odgovor = response;
-    console.log("znak zivota");
-    console.log(this.odgovor);
+  resetKodPolje(){
+    this.kodKarte.setValue("");
+    this.kodKarte.untouched;
   }
+
 }
