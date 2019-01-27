@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistracijaService } from '../registracija.service';
+import { KorisnikService } from '../korisnik.service';
 import { Korisnik } from '../model/Korisnik';
-import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registracija',
@@ -22,7 +22,7 @@ export class RegistracijaComponent implements OnInit {
   ime: FormControl;
   prezime: FormControl;
 
-  constructor(private regServis: RegistracijaService) {
+  constructor(private regServis: KorisnikService) {
     this.createFormControls();
     this.createForm();
   }
@@ -48,9 +48,9 @@ export class RegistracijaComponent implements OnInit {
     });
   }
   private onSubmit() {
-    
+
     if (this.registracijaForm.valid) {
-    
+
       this.kor = new Korisnik();
       this.kor.korIme = this.registracijaForm.controls.korIme.value;
       this.kor.ime = this.registracijaForm.controls.ime.value;
@@ -58,7 +58,7 @@ export class RegistracijaComponent implements OnInit {
       this.kor.email = this.registracijaForm.controls.email.value;
       this.kor.lozinka1 = this.registracijaForm.controls.lozinka1.value;
       this.kor.lozinka2 = this.registracijaForm.controls.lozinka2.value;
-      this.regServis.post(this.kor);
+      this.regServis.registracija(this.kor);
       this.registracijaForm.reset();
     } else {
       this.lozinka1.markAsTouched();

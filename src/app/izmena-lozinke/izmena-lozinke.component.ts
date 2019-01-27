@@ -3,7 +3,7 @@ import { Router } from "@angular/router"
 import { PrijavljenKorisnik } from '../model/PrijavljenKorisnik';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Korisnik } from '../model/Korisnik';
-import { IzmenaLozinkeService } from '../izmena-lozinke.service';
+import { KorisnikService } from '../korisnik.service';
 
 @Component({
   selector: 'app-izmena-lozinke',
@@ -19,7 +19,7 @@ export class IzmenaLozinkeComponent implements OnInit {
 
   korisnik: Korisnik;
 
-  constructor(private router: Router, private izmenaLozinkeService: IzmenaLozinkeService) {
+  constructor(private router: Router, private izmenaLozinkeService: KorisnikService) {
 
     this.createFormControls();
     this.createForm();
@@ -61,15 +61,7 @@ export class IzmenaLozinkeComponent implements OnInit {
 
   otkazi() {
     this.lozinkaForm.reset();
-    if (this.user.uloga === "KORISNIK") {
-      this.router.navigate(['/profilKorisnik']);
-  } else if (this.user.uloga === "ADMINISTRATOR") {                    
-      this.router.navigate(['/profilAdmin']);
-  } else if (this.user.uloga === "VERIFIKATOR") {
-      this.router.navigate(['/profilVerifikator']);
-  } else {
-      this.router.navigate(['/profilKondukter']);
-  }
+    this.izmenaLozinkeService.redirectProfil();
   }
 
   get user(): any {

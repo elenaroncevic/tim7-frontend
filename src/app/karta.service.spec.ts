@@ -1,21 +1,25 @@
 import { TestBed } from '@angular/core/testing';
-import { VehicleService } from './vehicle.service';
-import { HttpClient, HttpHandler } from '@angular/common/http';
-import { LocalStorage } from '@ngx-pwa/local-storage';
 
-describe('VehicleService', () => {
-  
+import { KartaService } from './karta.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+describe('KartaService', () => {
+
   beforeEach(() => {
+    let routerMock = {
+      navigate: jasmine.createSpy('navigate')
+    };
 
     TestBed.configureTestingModule({
       providers: [HttpClient,
         HttpHandler,
-        LocalStorage]
+        { provide: Router, useValue: routerMock }]
     })
   });
 
   it('should be created', () => {
-    const service: VehicleService = TestBed.get(VehicleService);
+    const service: KartaService = TestBed.get(KartaService);
     expect(service).toBeTruthy();
   });
 });
