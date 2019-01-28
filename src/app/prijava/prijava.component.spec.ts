@@ -12,7 +12,7 @@ describe('PrijavaComponent', () => {
 
   beforeEach(async(() => {
     let prijavaServiceMock = {
-      prijava: jasmine.createSpy('post').and.returnValue(Promise.resolve())
+      prijava: jasmine.createSpy('prijava').and.returnValue(Promise.resolve())
     };
 
 
@@ -38,7 +38,7 @@ describe('PrijavaComponent', () => {
     expect(component.lozinka1.value).toEqual("");
   });
 
-  it('neuspesan login test', () => {
+  it('uspesan login test', () => {
     component.ngOnInit();
     fixture.detectChanges();
     component.korIme.setValue("test");
@@ -72,7 +72,7 @@ describe('PrijavaComponent', () => {
     expect(component.lozinka1.valid).toBeTruthy();
   });
 
-  it('neuspesan login oba test', () => {
+  it('pokusaj prijave sa nepopunjenom formom test', () => {
     component.ngOnInit();
     fixture.detectChanges();
     component.korIme.setValue("");

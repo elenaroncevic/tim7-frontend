@@ -13,7 +13,19 @@ export class Zona {
    name: string;
    id: number;
 
-  constructor() {}
+  constructor(){    
+  }
+}
+
+export class SveZaStavku{
+  linije: Linija[];
+  tipoviKarata: string[];
+  vrstePrevoza: string[];
+  statusiKorisnika: string[];
+  zones: Zona[];
+
+  constructor(){
+  }
 }
 
 

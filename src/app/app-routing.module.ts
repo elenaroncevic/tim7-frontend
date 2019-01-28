@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CenovnikComponent} from './cenovnik/cenovnik.component';
+import { EditCenovnikComponent} from './edit-cenovnik/edit-cenovnik.component';
 import { RegistracijaComponent} from './registracija/registracija.component';
 import { PrijavaComponent} from './prijava/prijava.component';
 
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'kupovinaKarte', component: KupovinaKarteComponent },
   { path: 'uredjivanjeProfila', component: UredjivanjeProfilaComponent },
   { path: 'izmenaLozinke', component: IzmenaLozinkeComponent },
+  { path: 'editCenovnik', component: EditCenovnikComponent},
 
   { path: 'formCenovnik', component: FormCenovnikComponent},
   { path: 'mrezaLinija', component: MrezaLinijaComponent},
