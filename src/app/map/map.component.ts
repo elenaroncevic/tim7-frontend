@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, ElementRef, Input, EventEmitter, Output, DoCheck, AfterContentChecked, AfterViewChecked } from '@angular/core';
+import { Component, ViewChild, OnInit, ElementRef, Input, EventEmitter, Output} from '@angular/core';
 import {} from 'googlemaps';
 import { Linija } from '../model/Linija';
 import { Stanica } from '../model/Stanica';
@@ -111,7 +111,6 @@ ngOnInit() {
         if (this.hasAccess) {
 
             this.addStation.emit(event.latLng);
-        
         let infoWindow = new google.maps.InfoWindow({
                 content: 'new station'
         });
