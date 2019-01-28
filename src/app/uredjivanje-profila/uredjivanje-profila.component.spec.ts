@@ -106,4 +106,9 @@ let router ;
     expect(component.email.valid).toBeFalsy();
     
   });
+
+  it('otkazi test', () => {
+    component.otkazi();
+    expect(router.navigate).toHaveBeenCalledWith(['/profilKorisnik']);
+  });
 });

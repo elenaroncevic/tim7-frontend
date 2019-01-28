@@ -54,9 +54,10 @@ export class IzmenaLozinkeComponent implements OnInit {
       this.korisnik.lozinka2 = this.nova2.value;
       this.korisnik.trenutnaLozinka = this.trenutna.value;
 
-      this.izmenaLozinkeService.izmenaLozinke(this.korisnik);      
+      this.izmenaLozinkeService.izmenaLozinke(this.korisnik);   
+      this.lozinkaForm.reset();   
     }
-    this.lozinkaForm.reset();
+   
   }
 
   otkazi() {
