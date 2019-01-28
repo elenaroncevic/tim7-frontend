@@ -27,9 +27,9 @@
     <p *ngIf="!showVehicle">{{title_vehicle}}</p>
     <div *ngIf="showVehicle">
         <p>Registracija: 
-        <input [(ngModel)]="current_vehicle.registration"></p>
+        <input [(ngModel)]="current_vehicle.name"></p>
         
-        <ngx-select-dropdown [config]="configTypes" [options]="allTypes" [(ngModel)]="selectedType">
+        <ngx-select-dropdown [config]="configTypes" [options]="allTypes" [(ngModel)]="selectedType" >
         </ngx-select-dropdown>
 
         <ngx-select-dropdown [config]="config" [options]="allLines" [(ngModel)]="selectedLine">

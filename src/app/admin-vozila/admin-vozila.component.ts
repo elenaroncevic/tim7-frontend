@@ -69,7 +69,7 @@ export class AdminVozilaComponent implements OnInit {
             this.showVehicle = true;
             const list = this.allLines.filter(Line => Line.id === this.current_vehicle.lineId);
             if (list.length !== 0) {
-                this.selectedLine = list[0];
+                this.selectedLine = {'id': list[0].id, 'name': list[0].name, 'zones': [], 'stations': [], 'vehicles': []};
             }
         }).catch((error) => {
             this.title_vehicle = 'Problem sa ucitavanjem, pokusajte ponovo uskoro';
@@ -78,6 +78,7 @@ export class AdminVozilaComponent implements OnInit {
   }
 
   openVehicleInfo(vehicle: Vozilo) {
+    this.showVehicle = false;
     this.current_vehicle = vehicle;
     this.loadingVehicle = true;
     this.selectedType = vehicle.type;
@@ -85,16 +86,16 @@ export class AdminVozilaComponent implements OnInit {
         this.loadAllLines();
     } else {
         this.loadingVehicle = false;
-        this.showVehicle = true;
         const list = this.allLines.filter(Line => Line.id === vehicle.lineId);
         if (list.length !== 0) {
             this.selectedLine = list[0];
         }
+        this.showVehicle = true;
     }
   }
 
   newVehicle() {
-      this.current_vehicle = {'id': null, 'registration': '', 'type': '', 'lineId': null, 'lineName': ''};
+      this.current_vehicle = {'id': null, 'name': '', 'type': '', 'lineId': null, 'lineName': ''};
       if ( this.allLines.length === 0) {
           this.loadingVehicle = true;
           this.loadAllLines();
@@ -104,7 +105,7 @@ export class AdminVozilaComponent implements OnInit {
   }
 
   saveChanges() {
-            if (this.current_vehicle.registration === '' || this.selectedType === undefined) {
+            if (this.current_vehicle.name === '' || this.selectedType === undefined) {
                 return;
             }
             this.showVehicle = false;
@@ -128,6 +129,7 @@ export class AdminVozilaComponent implements OnInit {
                     this.title_vehicle = 'Problem prilikom cuvanja podataka, pokusajte ponovo';
                 });
         }
+
 
   deleteVehicle() {
       if ( this.current_vehicle.id === null) {

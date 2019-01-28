@@ -28,7 +28,7 @@ export class MrezaLinijaComponent implements OnInit {
     this.title_zone = 'Ucitavaju se zone, sacekajte par sekundi';
     this.getZone();
     this.name_of_zone = 'Izaberi zonu za prikaz linija';
-    this.izabranaLinija = {'id': -1, 'name': 'null', 'zones': [], 'stations': []};
+    this.izabranaLinija = {'id': -1, 'name': 'null', 'zones': [], 'stations': [], 'vehicles': []};
 
   }
 
