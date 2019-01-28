@@ -1,0 +1,87 @@
+<div class="trenutni-raspored-section">
+  <div class="col-md-3"></div>
+  <div class="col-md-5 container">
+    <div class="form-group" *ngIf="postojiRedVoznje && !loading" >
+      <br />
+      <br />
+      <button class="btn btn-primary" type="button" (click)="obrisiRedVoznje()">Obrisi red voznje</button>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <div class="form-group">
+        <input class="form-group" type="text" readonly value="{{buduciRed.datumObjavljivanja}}">
+        <input class="form-group" type="date" [(ngModel)]="novDatum">
+      </div>
+      <button class="btn btn-primary" type="button" (click)=izmenaDatuma()>Izmeni datum</button>
+      <br/>
+      <br/>
+      <h3>Raspored voznje za:</h3>
+      <br />
+      <form novalidate [formGroup]="prikazRasporedaForma" (ngSubmit)="prikaziRaspored()">
+        <div class="form-group" [ngClass]="{'has-danger': linijaControl.invalid && (linijaControl.dirty || linijaControl.touched), 'has-success': linijaControl.valid && (linijaControl.dirty || linijaControl.touched)}">
+          <select class="form-control" [(ngModel)]="izabranaLinija" id="nazivi_linija" formControlName="linijaControl" required>
+            <option [ngValue]="null" hidden>Odabir linije</option>
+            <option class="dropdown-select" *ngFor="let linija of postojeceLinije" [value]="linija.name">{{linija.name}}</option>
+          </select> 
+          <div class="form-control-feedback" *ngIf="linijaControl.errors && (linijaControl.dirty || linijaControl.touched)">
+            <p *ngIf="linijaControl.errors.required">Naziv linije je obavezan.</p>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-danger': danControl.invalid && (danControl.dirty || danControl.touched), 'has-success': danControl.valid && (danControl.dirty || danControl.touched)}">
+          <select class="form-control" [(ngModel)]="izabraniDan" id="nazivi_dana" formControlName="danControl" required>
+            <option [ngValue]="null" hidden>Odabir dana</option>
+            <option class="dropdown-select" value="RADNI">RADNI</option>
+            <option class="dropdown-select" value="SUBOTA">SUBOTA</option>
+            <option class="dropdown-select" value="NEDELJA">NEDELJA</option>
+          </select> 
+          <div class="form-control-feedback" *ngIf="danControl.errors && (danControl.dirty || danControl.touched)">
+            <p *ngIf="danControl.errors.required">Odabir dana je obavezan</p>
+          </div>
+        </div>
+        <div class="modal-footer">           
+          <button class="btn btn-primary" type="submit">Prikazi</button>
+        </div>
+      </form>
+      
+      <div *ngIf="prikazRasporeda">
+          <table class="table table-sm">
+            <tr><button class="btn btn-primary" type="button" (click)="obrisiRaspored()">Obrisi raspored</button></tr>
+            <tr>
+              <th>Satnice za {{izabraniRaspored.nazivLinije}} za dan {{izabraniRaspored.danUNedelji}}</th>
+            </tr>
+            <tr *ngFor="let satnica of izabraniRaspored.vremena">
+              <td>{{satnica}}</td>
+            </tr>
+          </table>
+        
+        </div>
+      
+        <div *ngIf="dodavanjeRasporeda">
+          <ngb-timepicker [(ngModel)]="novaSatnica" [meridian]="meridian" name = "time" [(ngModel)]="novaSatnica" ></ngb-timepicker>
+          <button class="btn btn-primary" type="button" (click)="dodajSatnicu()">Dodaj satnicu</button>
+          <table class="table table-sm">
+              <tr><button class="btn btn-primary" type="button" (click)="kreirajRaspored()">Kreiraj raspored</button></tr>
+              <tr>
+                <th>Satnice za {{kreiraniRaspored.nazivLinije}} za dan {{kreiraniRaspored.danUNedelji}}</th>
+              </tr>
+              <tr *ngFor="let sat of satnice">
+                <td>{{sat.hour}} : {{sat.minute}}</td>
+              </tr>
+            </table>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <div class="form-group" *ngIf="!postojiRedVoznje && !loading">
+        <div class="input-group">
+            <input type="date" [(ngModel)]="novDatum2">
+          </div>
+          <button class="btn btn-primary" type="button" (click)="kreirajRedVoznje()">Kreiraj red voznje</button>
+    </div>
+  </div>
+</div>
+  
