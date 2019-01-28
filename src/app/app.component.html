@@ -4,6 +4,7 @@
     <button class="nav-item nav-link-edit" [routerLink]="['/prijava']">Prijava</button>
     <button class="nav-item nav-link-edit" [routerLink]="['/cenovnik']">Cenovnik</button>
     <button class="nav-item nav-link-edit" [routerLink]="['/mrezaLinija']">Mreza Linija</button>
+    <button class="nav-item-nav-link-edit" [routerLink]="['/trenutniRaspored']">Red voznje</button>
     <br />
   </div>
   <div *ngIf="user!=undefined" class="item1">
@@ -33,6 +34,7 @@
     <div *ngIf="user.uloga=='VERIFIKATOR'">
 
       <button class="nav-item nav-link-edit" [routerLink]="['/profilVerifikator']">Profil</button>
+      <button class="nav-item nav-link-edit" [routerLink]="['/potvrdaZahteva']">Odobri karte</button>
     </div>
 
   </div>

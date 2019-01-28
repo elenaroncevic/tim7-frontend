@@ -4,7 +4,7 @@ import { PrijavljenKorisnik } from '../model/PrijavljenKorisnik';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { OnInit } from '@angular/core';
 import { Korisnik } from '../model/Korisnik';
-import { IzmenaLicnihPodatakaService } from '../izmena-licnih-podataka.service';
+import { KorisnikService } from '../korisnik.service';
 
 @Component({
   selector: 'app-uredjivanje-profila',
@@ -18,7 +18,7 @@ export class UredjivanjeProfilaComponent implements OnInit {
   email: FormControl;
   korisnik: Korisnik;
 
-  constructor(private router: Router, private izmenaPodatakService: IzmenaLicnihPodatakaService) {
+  constructor(private router: Router, private izmenaPodatakService: KorisnikService) {
 
     this.createFormControls();
     this.createForm();

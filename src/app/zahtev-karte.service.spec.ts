@@ -1,20 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GetLinijeZoneService } from './get-linije-zone.service';
+import { ZahtevKarteService } from './zahtev-karte.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 
-describe('GetLinijeZoneService', () => {
-
-
+describe('ZahtevKarteService', () => {
   beforeEach(() => {
+
     TestBed.configureTestingModule({
       providers: [HttpClient,
         HttpHandler]
     })
   });
 
+
   it('should be created', () => {
-    const service: GetLinijeZoneService = TestBed.get(GetLinijeZoneService);
+    const service: ZahtevKarteService = TestBed.get(ZahtevKarteService);
     expect(service).toBeTruthy();
   });
 });

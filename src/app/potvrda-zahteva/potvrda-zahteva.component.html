@@ -1,0 +1,40 @@
+<div class="check-card-section">
+  <div class="col-md-9"></div>
+  <div class="col-md-7 container">
+    <br>
+    <h4><label>Neodobrene karte: </label></h4>
+    <br>
+    <br>
+    <div *ngIf="!loading">
+      <table>
+        <tr>
+          <th>Korisnicka lozinka</th>
+          <th>Korisnicki status</th>
+          <th>Dokument</th>
+          <th>Tip karte</th>
+          <th>Zona</th>
+          <th>Vozilo</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let zahtev of listaZahteva">
+          <td>{{zahtev.korisnikUsername}}</td>
+          <td>{{zahtev.statusKorisnika}}</td>
+          <td><a href="{{zahtev.lokacijaDokumenta}}">slika</a></td>
+          <td>{{zahtev.tipKarte}}</td>
+          <td>{{zahtev.nazivZone}}</td>
+          <td>{{zahtev.tipVozila}}</td>
+          <td><button class="btn btn-primary" (click)="odobriKartu(zahtev.id,'ODOBRENA')">ODOBRI</button></td>
+          <td><button class="btn btn-primary" (click)="ponistiKartu(zahtev.id,'PONISTENA')">PONISTI</button></td>
+        </tr>
+      </table>
+    
+    </div>
+    <div *ngIf="!postoje">Ne postoji nijedan neodobren zahtev za kartu</div>
+    
+      
+  </div>
+</div>
+
+
+

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PrijavaService } from '../prijava.service';
+import { KorisnikService } from '../korisnik.service';
 import { Login } from '../model/Login';
-import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { TipKorisnikaService } from '../tip-korisnika.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-prijava',
@@ -10,25 +9,24 @@ import { TipKorisnikaService } from '../tip-korisnika.service';
   styleUrls: ['./prijava.component.css']
 })
 export class PrijavaComponent implements OnInit {
-
-
   kor: Login;
   prijavaForm: FormGroup;
   korIme: FormControl;
   lozinka1: FormControl;
   
-  constructor(private prijavaService: PrijavaService) {
-    this.createFormControls();
-    this.createForm();
+  constructor(private prijavaService: KorisnikService) {
+
    }
 
   ngOnInit() {
+    this.createFormControls();
+    this.createForm();
   }
 
   
   createFormControls() {
     this.korIme = new FormControl('', Validators.required);
-    this.lozinka1 = new FormControl('', [Validators.required]);
+    this.lozinka1 = new FormControl('', Validators.required);
    
   }
 
@@ -39,13 +37,13 @@ export class PrijavaComponent implements OnInit {
      
     });
   }
-  private onSubmit() {
+  onSubmit() {
    
     if (this.prijavaForm.valid) {
       this.kor = new Login();
       this.kor.username = this.prijavaForm.controls.korIme.value;
       this.kor.password = this.prijavaForm.controls.lozinka1.value;
-      this.prijavaService.post(this.kor);
+      this.prijavaService.prijava(this.kor);
       
       this.prijavaForm.reset();
     }else{

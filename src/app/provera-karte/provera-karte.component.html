@@ -8,13 +8,13 @@
 
     
       <div class="form-group">
-        <select class="dropdown-select" [(ngModel)]="izabranaLinija" id="nazivi_linija">
+        <select class="form-control" [(ngModel)]="izabranaLinija" id="nazivi_linija">
           <option class="dropdown-select" *ngFor="let linija of listaLinija" [value]="linija.name">{{linija.name}}</option>
         </select> 
       </div>
 
       <div class="form-group">
-        <select class="dropdown-select" [(ngModel)]="tipPrevoza" id="tipovi_prevoza">
+        <select class="form-control" [(ngModel)]="tipPrevoza" id="tipovi_prevoza">
           <option value="AUTOBUS">AUTOBUS</option>
           <option value="METRO">METRO</option>
           <option value="TRAMVAJ">TRAMVAJ</option>
