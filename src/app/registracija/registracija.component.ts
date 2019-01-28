@@ -47,7 +47,7 @@ export class RegistracijaComponent implements OnInit {
       lozinka2: this.lozinka2
     });
   }
-  private onSubmit() {
+ onSubmit() {
 
     if (this.registracijaForm.valid) {
 

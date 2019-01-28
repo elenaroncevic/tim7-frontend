@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
 import {StavkaCenovnika} from '../model/stavkaCenovnika';
 import{CenovnikService} from '../cenovnik.service';
 import {Cenovnik} from '../model/Cenovnik';
+
 
 
 
@@ -12,14 +13,23 @@ import {Cenovnik} from '../model/Cenovnik';
 })
 export class CenovnikComponent implements OnInit {
 
-  cenovnik : Cenovnik;
-  newCenovnik : Cenovnik = new Cenovnik();
   loading = true;
 
-  constructor(private cenovnikService : CenovnikService) { }
+  @Input('cenovnik') cenovnik: Cenovnik;
+
+
+
+
+  constructor(private cenovnikService : CenovnikService) {
+    }
 
   ngOnInit() {
-    this.getCenovnik();
+    if(!this.cenovnik){
+      this.getCenovnik();
+    }
+    else{
+      this.loading = false;
+    }
   }
 
   sort(prop: string) {    
@@ -39,16 +49,6 @@ export class CenovnikComponent implements OnInit {
      });
   }
 
-  addCenovnik(){
-    this.loading = true;
-    this.cenovnikService.addCenovnik(this.cenovnik)
-    .then((response) => {
-      this.cenovnik = response;
-      console.log(response);
-      this.loading = false;
-    }).catch((error) => {
-      console.log(error)
-    });
-  }
+  
 
 }
