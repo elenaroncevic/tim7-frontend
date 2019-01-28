@@ -22,6 +22,7 @@ import { AdminVozilaComponent } from './admin-vozila/admin-vozila.component';
 import { ProveraKarteComponent } from './provera-karte/provera-karte.component';
 import { PotvrdaZahtevaComponent } from './potvrda-zahteva/potvrda-zahteva.component';
 import { TrenutniRasporedComponent } from './trenutni-raspored/trenutni-raspored.component';
+import { RedVoznjeManipComponent } from './red-voznje-manip/red-voznje-manip.component';
 
 const routes: Routes = [
   { path: 'cenovnik', component: CenovnikComponent },
@@ -44,6 +45,7 @@ const routes: Routes = [
   { path: 'proveraKarte', component: ProveraKarteComponent},
   { path: 'potvrdaZahteva', component: PotvrdaZahtevaComponent},
   { path: 'trenutniRaspored', component: TrenutniRasporedComponent},
+  { path: 'redVoznjeManip', component: RedVoznjeManipComponent},
 ];
 
 @NgModule({

@@ -31,6 +31,7 @@ import { AdminVozilaComponent } from './admin-vozila/admin-vozila.component';
 import { ProveraKarteComponent } from './provera-karte/provera-karte.component';
 import { PotvrdaZahtevaComponent } from './potvrda-zahteva/potvrda-zahteva.component';
 import { TrenutniRasporedComponent } from './trenutni-raspored/trenutni-raspored.component';
+import { RedVoznjeManipComponent } from './red-voznje-manip/red-voznje-manip.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { TrenutniRasporedComponent } from './trenutni-raspored/trenutni-raspored
     ProveraKarteComponent,
     PotvrdaZahtevaComponent,
     TrenutniRasporedComponent,
+    RedVoznjeManipComponent,
   ],
   imports: [
     BrowserModule,
