@@ -18,10 +18,13 @@ export class MrezaLinijaComponent implements OnInit {
     title_zone: string;
     izabranaLinija: Linija;
     loadingLinije: boolean;
+    hasAccess: boolean;
 
 
 
-  constructor(private zoneService: ZoneService, private linijeService: LinijeService) { }
+  constructor(private zoneService: ZoneService, private linijeService: LinijeService) { 
+      this.hasAccess = false;
+  }
 
   ngOnInit() {
     this.loadingLinije = false;

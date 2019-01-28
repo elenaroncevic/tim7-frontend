@@ -20,7 +20,10 @@ export class AdminLinijeComponent implements OnInit {
     dropdownSettingsVeh: any;
     currentLine: Linija;
     title: string;
+    title_line: string;
     lines: Linija[];
+    hasAccess: boolean;
+    added: boolean;
 
     // liste objekata za dropdown-s
     zones: Zona[];
@@ -30,7 +33,9 @@ export class AdminLinijeComponent implements OnInit {
 
 
   constructor(private lineService: LinijeService, private zoneService: ZoneService,
-    private vehicleService: VehicleService, private stationService: StationService) { }
+    private vehicleService: VehicleService, private stationService: StationService) {
+        this.hasAccess = true;
+     }
 
   ngOnInit() {
     this.dropdownSettings = {
@@ -56,6 +61,7 @@ export class AdminLinijeComponent implements OnInit {
     this.lines = [];
     this.vehicles = [];
     this.currentLine = {'id': null, 'name': '', 'zones': [], 'vehicles': [], 'stations': []};
+    this.added = false;
 
     this.title = 'Ucitavaju se linije, pricekajte nekoliko sekundi';
     this.showLine = false;
@@ -69,36 +75,72 @@ export class AdminLinijeComponent implements OnInit {
         });
   }
 
-  openLineInfo(line) {
+  openLineInfo(line: any) {
+      this.hasAccess = true;
     this.loadingLine = true;
-    this.currentLine = line;
+    this.currentLine = JSON.parse(JSON.stringify(line));
     if (this.zones.length === 0) {
         this.loadAllZones();
+    } else {
+        this.loadingLine = false;
+        this.showLine = true;
     }
   }
 
   newLine() {
+    this.loadingLine = true;
+    this.currentLine = {'id': null, 'name': '', 'zones': [], 'vehicles': [], 'stations': []};
+    if (this.zones.length === 0) {
+        this.loadAllZones();
+    } else {
+        this.loadingLine = false;
+        this.showLine = true;
+    }
+
+  }
+
+  saveChanges() {
+    if (this.currentLine.name === '') {
+        return;
+    }
+    this.showLine = false;
+    this.title_line = 'Cuvanje linije u toku, pricekajte';
+    this.loadingLine = false;
+    this.lineService.updateLine(this.currentLine)
+        .then((response) => {
+            this.lines = response;
+            this.loadingLine = false;
+            this.title_line = 'Linija sacuvana, izaberite novu za uredjivanje informacija';
+        }).catch((error) => {
+            this.loadingLine = false;
+            this.title_line = 'Problem prilikom cuvanja podataka, pokusajte ponovo\nImajte na umu da linija ne smije da se koristi u' +
+            'trenutnom cjenovniku i/ili u trenutnom/buducem redu voznje';
+        });
+  }
+
+  deleteZone() {
       this.loadingLine = true;
+      this.showLine = false;
+      this.title_line = 'Brisanje linije u toku, pricekajte';
+     this.lineService.deleteLine(this.currentLine.id)
+        .then((response) => {
+            this.lines = response;
+            this.loadingLine = false;
+            this.title_line = 'Linija izbrisana, izaberite novu za uredjivanje informacija';
+        }).catch((error) => {
+            this.loadingLine = false;
+            this.showLine = false;
+            this.title_line = 'Problem prilikom brisanja podataka, pokusajte ponovo';
+        });
+  }
+
+
+  addStationToLine(latlng: any) {
+     this.currentLine.stations.push({'id': null, 'name': 'new_station', 'longitude': latlng.lng(), 'latitude': latlng.lat()});
   }
 
   removeStationFromLine(station: Stanica) {
-    
-  }
-
-  zoneAdded(zone: any) {
-
-  }
-
-  zoneRemoved(zone: any) {
-
-  }
-
-  vehicleAdded(vehicle: any) {
-
-  }
-
-  vehicleRemoved(vehicle: any) {
-
+    this.currentLine.stations.splice(this.currentLine.stations.indexOf(station), 1);
   }
 
   // loading dropdown items

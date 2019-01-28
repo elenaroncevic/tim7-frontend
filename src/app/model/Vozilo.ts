@@ -2,7 +2,7 @@ import { Linija } from './Linija';
 
 export class Vozilo {
     id: number;
-    name: string;
+    registration: string;
     type: string;
     lineId: number;
     lineName: string;

@@ -1,3 +1,18 @@
-<p>
-  admin-stanice works!
-</p>
+<div id="nazivi_stanica">
+    <button *ngFor="let station of stations" (click)="openStationInfo(station)" [disabled]="savingStation">{{station.name}}</button>
+</div>
+
+<p *ngIf="!showStation">{{title_station}}</p>
+<div id="current-stanica" *ngIf="showStation">
+        <p>Naziv: 
+        <input [(ngModel)]="currentStation.name"></p>
+
+     <app-map-component [station]="currentStation" [admin]="hasAccess"></app-map-component>
+
+    
+    <div class="buttons" *ngIf="showStation">
+        <button (click)="saveChanges()">Sacuvaj</button>
+        <button (click)="deleteStation()">Obrisi</button>
+    </div>
+    <p style="color: red" *ngIf="showStation">Naziv stanice ne smije ostati prazan!</p> 
+</div>

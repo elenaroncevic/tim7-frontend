@@ -1,21 +1,26 @@
 <div id="linije">
     <p>{{title}}<button id="add-btn" (click)="newLine()" [disabled]="loadingLine">+ Dodaj liniju</button></p>
-    <button *ngFor="let line of lines" (click)="openLineInfo(line)">{{line.name}}</button>
+    <button *ngFor="let line of lines" (click)="openLineInfo(line)" [disabled]="loadingLine">{{line.name}}</button>
 </div>
 
-<div *ngIf="showLine" id="current-line">
+<p *ngIf="!showLine">{{title_line}}</p>
+<div id="current-line" *ngIf ="showLine">
+    <p>Naziv: 
+    <input [(ngModel)]="currentLine.name"></p>
+
     <ng-multiselect-dropdown [placeholder]="'izaberi zone ove linije'" [data]="zones" 
-        [(ngModel)]="currentLine.zones" [settings]="dropdownSettings" (onDeSelect)="zoneRemoved($event)" (onSelect)="zoneAdded($event)">
+        [(ngModel)]="currentLine.zones" [settings]="dropdownSettings">
     </ng-multiselect-dropdown>
 
     <ng-multiselect-dropdown [placeholder]="'izaberi vozila ove linije'" [data]="vehicles" 
-        [(ngModel)]="currentLine.vehicles" [settings]="dropdownSettingsVeh" (onDeSelect)="vehicleRemoved($event)" (onSelect)="vehicleAdded($event)">
+        [(ngModel)]="currentLine.vehicles" [settings]="dropdownSettingsVeh">
     </ng-multiselect-dropdown>
     <p style="color:red">Klikom na mapu, dodacete stanicu u ovu liniju;klikom na stanicu, uklonicete je iz linije</p>
-     <app-map-component  [linija]="currentLine" (removeStation)="removeStationFromLine($event)"></app-map-component>
+     <app-map-component  [linija]="currentLine" [admin]="hasAccess" (removeStation)="removeStationFromLine($event)" (addStation)="addStationToLine($event)"></app-map-component>
 
     <div class="buttons">
         <button (click)="saveChanges()">Sacuvaj</button>
         <button (click)="deleteZone()">Obrisi</button>
     </div>
+    <p style="color: red" *ngIf="showLine">Naziv linije ne smije ostati prazan!</p> 
 </div>
