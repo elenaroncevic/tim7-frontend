@@ -26,6 +26,15 @@ export class CenovnikService {
     return this.http.get<SveZaStavku>(this.cenovnikUrl+"/zaCenovnik", httpOptions).toPromise();
   }
 
+  getBuduci(){
+    var token = localStorage.getItem('X-Auth-Token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    httpOptions.headers = httpOptions.headers.append( 'X-Auth-Token' , token);
+    return this.http.get<Cenovnik[]>(this.cenovnikUrl+"/buduci", httpOptions).toPromise();
+  }
+
   addCenovnik(cenovnik : Cenovnik){
     var token = localStorage.getItem('X-Auth-Token');
     const httpOptions = {
@@ -35,6 +44,17 @@ export class CenovnikService {
 
     console.log(httpOptions);
     return this.http.post<string>(this.cenovnikUrl, cenovnik, {...httpOptions, responseType: 'text' as 'json'} ).toPromise();
+  }
+
+  editCenovnik(cenovnik : Cenovnik){
+    var token = localStorage.getItem('X-Auth-Token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+    httpOptions.headers = httpOptions.headers.append( 'X-Auth-Token' , token);
+
+    console.log(httpOptions);
+    return this.http.put<Cenovnik>(this.cenovnikUrl, cenovnik,httpOptions ).toPromise();
   }
 
   constructor(private http: HttpClient, protected localStorage: LocalStorage ) { }

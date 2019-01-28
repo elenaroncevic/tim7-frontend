@@ -1,0 +1,62 @@
+<div class="main">
+  <select *ngIf="!loading && hasItems" [ngModel]="selectedCenovnik" (ngModelChange)="onChange($event)" class='form-control'>
+    <option *ngFor="let cenovnik of cenovnici" [ngValue]="cenovnik">{{cenovnik.datumObjavljivanja | date}}</option>
+
+  </select>
+
+  <div *ngIf="selectedCenovnik">
+    <app-cenovnik [cenovnik]="selectedCenovnik"></app-cenovnik>
+  </div>
+  <button class="btn blue" (click)="show()">Uredi</button>
+
+  <form *ngIf="showEdit" novalidate [formGroup]="cenovnikForm" (ngSubmit)="editCenovnik(cf)" #cf="ngForm" >
+    <h6>Datum pocetka:</h6>
+    <div class="form-group"
+         [ngClass]="{'has-danger': datumControl?.invalid && ( datumControl?.touched || datumControl?.dirty),
+                   'has-success': datumControl?.valid && ( datumControl?.touched || datumControl?.dirty)}">
+      <input type="date"
+             class="form-control"
+             formControlName="datumControl"
+             placeholder="Datum pocetka vazenja"
+             >
+      <div class="form-control-feedback" *ngIf="datumControl.errors && (datumControl.dirty || datumControl.touched)">
+        <p *ngIf="datumControl.errors.validDate">Datum mora biti bar dva dana od sad</p>
+      </div>
+    </div>
+    <h6>Popust za djake:</h6>
+    <div class="form-group">
+      <input type="number"
+             min="0" max="100" step="5"
+             class="form-control"
+             formControlName="popustDjakControl"
+             >
+   </div>
+    <h6>Popust za studente:</h6>
+    <div class="form-group">
+         <input type="number"
+             min="0" max="100" step="5"
+             class="form-control"
+             formControlName="popustStudentControl"
+             >
+      
+    </div><h6>Popust za penzionere:</h6>
+    <div class="form-group"
+         >
+      <input type="number"
+             min="0" max="100" step="5"
+             class="form-control"
+             formControlName="popustPenzionerControl"
+             >
+      
+    </div><h6>Popust za nezaposlene:</h6>
+    <div class="form-group">
+      <input type="number"
+             min="0" max="100" step="5"
+             class="form-control"
+             formControlName="popustNezaposlenControl"
+             >
+     
+    </div>
+    <button type="submit" class="btn green">Uredi Cenovnik</button>
+  </form>
+</div>

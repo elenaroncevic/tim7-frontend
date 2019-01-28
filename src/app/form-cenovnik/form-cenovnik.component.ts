@@ -32,15 +32,6 @@ export class FormCenovnikComponent implements OnInit {
   zonaControl: FormControl;
   linijaControl: FormControl;
 
-  cena:number;
-  tipKarte: string;
-  vrstaPrevoza: string;
-  nazivZone: string;
-  nazivLinije: string;
-  popustDjak: number;
-  popustNezaposlen: number;
-  popustPenzioner: number;
-  popustStudent: number;
 
   showStavka: boolean;
   loading : boolean;
@@ -179,9 +170,7 @@ export class FormCenovnikComponent implements OnInit {
       this.showStavka = false;
        }).catch((error)=>{
           console.log(error);
-       });
-      
-
+       });    
     }
     if(this.cenovnik.stavkeCenovnika.length <= 0){
       console.log("Mora imati bar jednu stavku");
