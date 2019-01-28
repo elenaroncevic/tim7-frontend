@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from "@angular/router"
+import { Router } from "@angular/router";
 import { PrijavljenKorisnik } from '../model/PrijavljenKorisnik';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { OnInit } from '@angular/core';
