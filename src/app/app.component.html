@@ -17,6 +17,7 @@
       <button class="nav-item nav-link-edit" [routerLink]="['/kupovinaKarte']">Kupovina karte</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/uredjivanjeProfila']">Izmena licnih podataka</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/mrezaLinija']">Mreza Linija</button>
+      <button class="nav-item-nav-link-edit" [routerLink]="['/trenutniRaspored']">Red voznje</button>
     </div>
     <!-- Ovde stavljajte vase opcije u meni -->
     <div *ngIf=" user.uloga=='ADMINISTRATOR'">
@@ -29,16 +30,20 @@
       <button class="nav-item-nav-link-edit" [routerLink]="['/adminLinije']">Uredi linije</button>
       <button class="nav-item-nav-link-edit" [routerLink]="['/adminStanice']">Uredi stanice</button>
       <button class="nav-item-nav-link-edit" [routerLink]="['/adminVozila']">Uredi vozila</button>
+      <button class="nav-item-nav-link-edit" [routerLink]="['/redVoznjeManip']">Buduci red voznje</button>
+      <button class="nav-item-nav-link-edit" [routerLink]="['/trenutniRaspored']">Red voznje</button>
     </div>
     <div *ngIf=" user.uloga=='KONDUKTER'">
       <button class="nav-item nav-link-edit" [routerLink]="['/cenovnik']">Cenovnik</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/profilKondukter']">Profil</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/proveraKarte']">Proveri kartu</button>
+      <button class="nav-item-nav-link-edit" [routerLink]="['/trenutniRaspored']">Red voznje</button>
     </div>
     <div *ngIf="user.uloga=='VERIFIKATOR'">
       <button class="nav-item nav-link-edit" [routerLink]="['/cenovnik']">Cenovnik</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/profilVerifikator']">Profil</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/potvrdaZahteva']">Odobri karte</button>
+      <button class="nav-item-nav-link-edit" [routerLink]="['/trenutniRaspored']">Red voznje</button>
     </div>
   </div>
 
