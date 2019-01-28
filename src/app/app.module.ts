@@ -30,6 +30,7 @@ import { AdminLinijeComponent } from './admin-linije/admin-linije.component';
 import { AdminVozilaComponent } from './admin-vozila/admin-vozila.component';
 import { ProveraKarteComponent } from './provera-karte/provera-karte.component';
 import { PotvrdaZahtevaComponent } from './potvrda-zahteva/potvrda-zahteva.component';
+import { EditCenovnikComponent } from './edit-cenovnik/edit-cenovnik.component';
 import { TrenutniRasporedComponent } from './trenutni-raspored/trenutni-raspored.component';
 
 
@@ -56,6 +57,7 @@ import { TrenutniRasporedComponent } from './trenutni-raspored/trenutni-raspored
     ProveraKarteComponent,
     PotvrdaZahtevaComponent,
     TrenutniRasporedComponent,
+    EditCenovnikComponent,
   ],
   imports: [
     BrowserModule,
