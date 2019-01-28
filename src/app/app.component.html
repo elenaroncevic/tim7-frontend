@@ -12,6 +12,7 @@
     <button (click)='odjava()' class="nav-item nav-link-edit">Odjava</button>
     <button class="nav-item nav-link-edit" [routerLink]="['/izmenaLozinke']">Promena lozinke</button>
     <div *ngIf=" user.uloga=='KORISNIK'">
+      <button class="nav-item nav-link-edit" [routerLink]="['/cenovnik']">Cenovnik</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/profilKorisnik']">Profil</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/kupovinaKarte']">Kupovina karte</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/uredjivanjeProfila']">Izmena licnih podataka</button>
@@ -19,6 +20,7 @@
     </div>
     <!-- Ovde stavljajte vase opcije u meni -->
     <div *ngIf=" user.uloga=='ADMINISTRATOR'">
+      <button class="nav-item nav-link-edit" [routerLink]="['/cenovnik']">Cenovnik</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/profilAdmin']">Profil</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/mrezaLinija']">Mreza Linija</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/formCenovnik']">Dodaj Cenovnik</button>
@@ -29,16 +31,15 @@
       <button class="nav-item-nav-link-edit" [routerLink]="['/adminVozila']">Uredi vozila</button>
     </div>
     <div *ngIf=" user.uloga=='KONDUKTER'">
+      <button class="nav-item nav-link-edit" [routerLink]="['/cenovnik']">Cenovnik</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/profilKondukter']">Profil</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/proveraKarte']">Proveri kartu</button>
     </div>
     <div *ngIf="user.uloga=='VERIFIKATOR'">
+      <button class="nav-item nav-link-edit" [routerLink]="['/cenovnik']">Cenovnik</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/profilVerifikator']">Profil</button>
       <button class="nav-item nav-link-edit" [routerLink]="['/potvrdaZahteva']">Odobri karte</button>
     </div>
-    <!-- I ovde sve sto treba bilo koji korisnik-->
-    <button class="nav-item nav-link-edit" [routerLink]="['/cenovnik']">Cenovnik</button>
-
   </div>
 
   <div class="item2">
