@@ -69,10 +69,6 @@ export class AdminVozilaComponent implements OnInit {
             }
             this.loadingVehicle = false;
             this.showVehicle = true;
-            //const list = this.allLines.filter(Line => Line.id === this.current_vehicle.lineId);
-            //if (list.length !== 0) {
-            //    this.selectedLine = list[0];
-            //}
         }).catch((error) => {
             this.title_vehicle = 'Problem sa ucitavanjem, pokusajte ponovo uskoro';
             this.loadingVehicle = false;
@@ -83,15 +79,11 @@ export class AdminVozilaComponent implements OnInit {
     this.showVehicle = false;
     this.current_vehicle = JSON.parse(JSON.stringify(vehicle));
     this.loadingVehicle = true;
-    this.title_vehicle = "Vozilo se ucitava, pricekajte";
+    this.title_vehicle = 'Vozilo se ucitava, pricekajte';
     if (this.allLines.length === 0) {
         this.loadAllLines();
     } else {
         this.loadingVehicle = false;
-        //const list = this.allLines.filter(Line => Line.id === vehicle.lineId);
-        //if (list.length !== 0) {
-        //    this.selectedLine = list[0];
-        //}
         this.showVehicle = true;
     }
   }
@@ -113,7 +105,6 @@ export class AdminVozilaComponent implements OnInit {
             this.showVehicle = false;
             this.loadingVehicle = true;
             this.title_vehicle = 'Cuvanje vozila u toku, pricekajte';
-            
             this.current_vehicle.type = this.current_vehicle.type.toString();
             if (this.current_vehicle.lineName === null) {
                 this.current_vehicle.lineName = '';
@@ -121,7 +112,6 @@ export class AdminVozilaComponent implements OnInit {
             } else {
                 this.current_vehicle.lineName = this.current_vehicle.lineName.toString();
                 this.current_vehicle.lineId = this.allLinesIds[this.allLines.indexOf(this.current_vehicle.lineName)];
-                //this.current_vehicle.lineName = this.selectedLine.name;
             }
             this.vehicleService.updateVehicle(this.current_vehicle)
                 .then((response) => {
