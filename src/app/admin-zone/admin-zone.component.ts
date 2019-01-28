@@ -73,7 +73,7 @@ export class AdminZoneComponent implements OnInit {
   openZoneInfo(zona: Zona) {
     this.removedLinesIds = [];
 
-    this.currentZone = zona;
+    this.currentZone = JSON.parse(JSON.stringify(zona));
     this.loadingZone = true;
     this.title_zone = 'Ucitava se zona ' + zona.name + ', pricekajte par sekundi';
     this.linijeService.getLinije(zona)

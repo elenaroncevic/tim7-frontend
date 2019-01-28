@@ -15,36 +15,35 @@ export class AdminVozilaComponent implements OnInit {
     loadingVehicles: boolean;
     loadingVehicle: boolean;
     showVehicle: boolean;
-
     title_vehicles: string;
     title_vehicle: string;
     current_vehicle: Vozilo;
-    allLines: Linija[];
-    selectedLine: Linija;
-    selectedType: string;
+    allLines: string[];
+    allLinesIds: number[];
     allTypes: any;
+    dropdownSettingsTypes: any;
+    dropdownSettingsLines: any;
 
-    config: any;
-    configTypes: any;
 
   constructor(private vehicleService: VehicleService, private linesService: LinijeService) { }
 
   ngOnInit() {
-    this.config = {
-        displayKey: 'name',
-        height: 'auto',
-        placeholder: 'Izaberi liniju',
-      };
-    this.configTypes = {
-        height: 'auto',
-        placeholder: 'Izaberi tip vozila',
-    }
+    this.dropdownSettingsTypes = {
+        singleSelection: true,
+        idField: 'id',
+        textField: 'name'
+    };
+    this.dropdownSettingsLines = {
+        singleSelection: true,
+        idField: 'id',
+        textField: 'name'
+    };
       this.allTypes = ['AUTOBUS', 'METRO', 'TRAMVAJ'];
-      this.selectedType = 'AUTOBUS';
-      this.allLines = [];
       this.loadingVehicles = true;
       this.loadingVehicle = false;
       this.showVehicle = false;
+      this.allLines = [];
+      this.allLinesIds = [];
       this.title_vehicle = 'Izaberi vozilo da uredis podatke';
       this.title_vehicles = 'Vozila se ucitavaju, pricekajte par sekundi';
       this.vehicleService.getVehicles()
@@ -64,13 +63,16 @@ export class AdminVozilaComponent implements OnInit {
   loadAllLines() {
     this.linesService.getLinije(null)
         .then((response) => {
-            this.allLines = response;
+            for (let x of response) {
+                this.allLines.push(x.name);
+                this.allLinesIds.push(x.id);
+            }
             this.loadingVehicle = false;
             this.showVehicle = true;
-            const list = this.allLines.filter(Line => Line.id === this.current_vehicle.lineId);
-            if (list.length !== 0) {
-                this.selectedLine = list[0];
-            }
+            //const list = this.allLines.filter(Line => Line.id === this.current_vehicle.lineId);
+            //if (list.length !== 0) {
+            //    this.selectedLine = list[0];
+            //}
         }).catch((error) => {
             this.title_vehicle = 'Problem sa ucitavanjem, pokusajte ponovo uskoro';
             this.loadingVehicle = false;
@@ -78,18 +80,19 @@ export class AdminVozilaComponent implements OnInit {
   }
 
   openVehicleInfo(vehicle: Vozilo) {
-    this.current_vehicle = vehicle;
+    this.showVehicle = false;
+    this.current_vehicle = JSON.parse(JSON.stringify(vehicle));
     this.loadingVehicle = true;
-    this.selectedType = vehicle.type;
+    this.title_vehicle = "Vozilo se ucitava, pricekajte";
     if (this.allLines.length === 0) {
         this.loadAllLines();
     } else {
         this.loadingVehicle = false;
+        //const list = this.allLines.filter(Line => Line.id === vehicle.lineId);
+        //if (list.length !== 0) {
+        //    this.selectedLine = list[0];
+        //}
         this.showVehicle = true;
-        const list = this.allLines.filter(Line => Line.id === vehicle.lineId);
-        if (list.length !== 0) {
-            this.selectedLine = list[0];
-        }
     }
   }
 
@@ -104,19 +107,21 @@ export class AdminVozilaComponent implements OnInit {
   }
 
   saveChanges() {
-            if (this.current_vehicle.registration === '' || this.selectedType === undefined) {
+            if (this.current_vehicle.registration === '' || this.current_vehicle.type.toString() === '') {
                 return;
             }
             this.showVehicle = false;
             this.loadingVehicle = true;
             this.title_vehicle = 'Cuvanje vozila u toku, pricekajte';
-            this.current_vehicle.type = this.selectedType;
-            if (this.selectedLine === undefined) {
-                this.current_vehicle.lineId = null;
+            
+            this.current_vehicle.type = this.current_vehicle.type.toString();
+            if (this.current_vehicle.lineName === null) {
                 this.current_vehicle.lineName = '';
+                this.current_vehicle.lineId = null;
             } else {
-                this.current_vehicle.lineId = this.selectedLine.id;
-                this.current_vehicle.lineName = this.selectedLine.name;
+                this.current_vehicle.lineName = this.current_vehicle.lineName.toString();
+                this.current_vehicle.lineId = this.allLinesIds[this.allLines.indexOf(this.current_vehicle.lineName)];
+                //this.current_vehicle.lineName = this.selectedLine.name;
             }
             this.vehicleService.updateVehicle(this.current_vehicle)
                 .then((response) => {
@@ -128,6 +133,7 @@ export class AdminVozilaComponent implements OnInit {
                     this.title_vehicle = 'Problem prilikom cuvanja podataka, pokusajte ponovo';
                 });
         }
+
 
   deleteVehicle() {
       if ( this.current_vehicle.id === null) {

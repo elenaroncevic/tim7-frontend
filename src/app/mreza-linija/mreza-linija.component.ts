@@ -18,17 +18,20 @@ export class MrezaLinijaComponent implements OnInit {
     title_zone: string;
     izabranaLinija: Linija;
     loadingLinije: boolean;
+    hasAccess: boolean;
 
 
 
-  constructor(private zoneService: ZoneService, private linijeService: LinijeService) { }
+  constructor(private zoneService: ZoneService, private linijeService: LinijeService) { 
+      this.hasAccess = false;
+  }
 
   ngOnInit() {
     this.loadingLinije = false;
     this.title_zone = 'Ucitavaju se zone, sacekajte par sekundi';
     this.getZone();
     this.name_of_zone = 'Izaberi zonu za prikaz linija';
-    this.izabranaLinija = {'id': -1, 'name': 'null', 'zones': [], 'stations': []};
+    this.izabranaLinija = {'id': -1, 'name': 'null', 'zones': [], 'stations': [], 'vehicles': []};
 
   }
 

@@ -29,11 +29,13 @@
         <p>Registracija: 
         <input [(ngModel)]="current_vehicle.registration"></p>
         
-        <ngx-select-dropdown [config]="configTypes" [options]="allTypes" [(ngModel)]="selectedType">
-        </ngx-select-dropdown>
+        <ng-multiselect-dropdown [placeholder]="'izaberi tip vozila'" [data]="allTypes" 
+        [(ngModel)]="current_vehicle.type" [settings]="dropdownSettingsTypes">
+    </ng-multiselect-dropdown>
 
-        <ngx-select-dropdown [config]="config" [options]="allLines" [(ngModel)]="selectedLine">
-        </ngx-select-dropdown>
+    <ng-multiselect-dropdown [placeholder]="'izaberi liniju '" [data]="allLines" 
+        [(ngModel)]="current_vehicle.lineName" [settings]="dropdownSettingsLines">
+    </ng-multiselect-dropdown>
     </div>
 
     <div class="buttons" *ngIf="showVehicle">
