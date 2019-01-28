@@ -31,6 +31,7 @@ import { AdminVozilaComponent } from './admin-vozila/admin-vozila.component';
 import { ProveraKarteComponent } from './provera-karte/provera-karte.component';
 import { PotvrdaZahtevaComponent } from './potvrda-zahteva/potvrda-zahteva.component';
 import { EditCenovnikComponent } from './edit-cenovnik/edit-cenovnik.component';
+import { TrenutniRasporedComponent } from './trenutni-raspored/trenutni-raspored.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { EditCenovnikComponent } from './edit-cenovnik/edit-cenovnik.component';
     AdminVozilaComponent,
     ProveraKarteComponent,
     PotvrdaZahtevaComponent,
+    TrenutniRasporedComponent,
     EditCenovnikComponent,
   ],
   imports: [

@@ -3,7 +3,7 @@ import { GetLinijeZoneService } from '../get-linije-zone.service';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Karta } from '../model/Karta';
-import { KupovinaKarteService } from '../kupovina-karte.service';
+import { KartaService } from '../karta.service';
 import { PrijavljenKorisnik } from '../model/PrijavljenKorisnik';
 import { Router } from '@angular/router';
 
@@ -39,7 +39,7 @@ export class KupovinaKarteComponent implements OnInit {
   tipRute = null;
   tipoviRute: Array<Object> = [];
 
-  constructor(private zoneServis: GetLinijeZoneService, private kupovinaKarteServis: KupovinaKarteService, private router: Router) {
+  constructor(private zoneServis: GetLinijeZoneService, private kupovinaKarteServis: KartaService, private router: Router) {
     this.createFormControls();
     this.createForm();
   }

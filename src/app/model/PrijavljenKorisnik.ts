@@ -6,4 +6,5 @@ export class PrijavljenKorisnik {
     prezime : string;
     email : string;
     status : string;
+    token: string;
 }

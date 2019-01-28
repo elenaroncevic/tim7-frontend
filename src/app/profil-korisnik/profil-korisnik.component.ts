@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from "@angular/router"
 import { PrijavljenKorisnik } from '../model/PrijavljenKorisnik';
-
 import { OnInit } from '@angular/core';
-import { IzlistavanjeKarataService } from '../izlistavanje-karata.service';
+import { KartaService } from '../karta.service';
 import { Karta } from '../model/Karta';
 @Component({
   selector: 'app-profil-korisnik',
@@ -14,7 +12,7 @@ export class ProfilKorisnikComponent implements OnInit {
 
   kupljeneKarte: Array<Karta>;
 
-  constructor(private router: Router, private izlistajKarteServis: IzlistavanjeKarataService) { }
+  constructor( private izlistajKarteServis: KartaService) { }
 
   ngOnInit() {
     this.izlistajKarteServis.getKarteUlogovanog().subscribe(data => {
